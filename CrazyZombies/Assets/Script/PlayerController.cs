@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class move : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
 	private Animator animator;
 
