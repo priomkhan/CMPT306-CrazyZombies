@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameRun : MonoBehaviour {
 
 	public GameObject player;
+	public GameObject target;
 	public Texture2D groundImg;
 	public Texture2D bottomLeftBorderImg;
 	public Texture2D bottomTopBorderImg;
@@ -19,7 +20,14 @@ public class GameRun : MonoBehaviour {
 	void Start () {
 		generateMap ();
 
-		player.GetComponent<Rigidbody2D>().position = new Vector2 (Random.Range (0, width), Random.Range (0, height));
+		Vector2 playerPosition = new Vector2 (Random.Range (0, width), Random.Range (0, height));
+		player.GetComponent<Rigidbody2D>().position = playerPosition;
+		float minDistance = Mathf.Sqrt (width * width + height * height) / 2;
+		Vector2 targetPosition;
+		do {
+			targetPosition = new Vector2(Random.Range(0, width), Random.Range(0, height));
+		} while (Vector2.Distance (playerPosition, targetPosition) < minDistance);
+		target.GetComponent<Rigidbody2D> ().position = targetPosition;
 /*		int x = 0;
 		int y = 0;
 		while (x < 80 && y < 10) {
@@ -69,7 +77,7 @@ public class GameRun : MonoBehaviour {
 
 	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider) {
 		GameObject go = new GameObject ();
-		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0f, 0f));
+		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0.5f, 0.5f));
 		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
 		sr.sprite = sp;
 		go.transform.position = new Vector3 (x, y, 10f);
