@@ -120,9 +120,10 @@ GameObject:
   - component: {fileID: 25929556}
   - component: {fileID: 25929555}
   - component: {fileID: 25929559}
+  - component: {fileID: 25929560}
   m_Layer: 0
   m_Name: enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,6 +241,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &25929560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 25929554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97ddc1160686c54da6b01074bd7a5aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  harmTarget: Player
 --- !u!1 &1001913676
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +422,7 @@ GameObject:
   - component: {fileID: 1788389563}
   - component: {fileID: 1788389564}
   - component: {fileID: 1788389561}
+  - component: {fileID: 1788389565}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -549,6 +564,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.66, y: 0.86}
   m_EdgeRadius: 0
+--- !u!114 &1788389565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788389557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab37e16e3b94b841a69e1a3e8210629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 10
 --- !u!1 &1831891382
 GameObject:
   m_ObjectHideFlags: 0
