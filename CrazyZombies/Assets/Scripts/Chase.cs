@@ -23,5 +23,12 @@ public class Chase : MonoBehaviour {
 			v2.y = v.y * speed / v.magnitude * Time.deltaTime;
 			GetComponent<Rigidbody2D> ().velocity = v2;
 		}
+
+		Vector2 dir = target.transform.position - transform.position;
+		if (dir != Vector2.zero) {
+			float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
+		}
+
 	}
 }
