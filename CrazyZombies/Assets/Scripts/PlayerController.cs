@@ -4,40 +4,122 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public float playerMovingSpeed;
-	public float mouseRotationSpeed;
-	public GameObject mousePointer;
-	Rigidbody myRigidBody;
+	private Animator animator;
+
+	public GameObject bullet_obj;
+	public float bullet_speed = 5f;
+	float bullet_cooldown = 1.0f;
+	float cur_bullet_cooldown;
+	public AudioClip bulletFired;
+	public AudioClip playerDead;
+	public Vector3 bulletOffset = new Vector3(2.45f, 3.5f, 0);
+
 
 	// Use this for initialization
 	void Start () {
-		myRigidBody = GetComponent<Rigidbody> ();
+		animator = GetComponent<Animator>();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetAxisRaw ("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal")< 0.5f) {
-		
-			transform.Translate (new Vector3 (Input.GetAxisRaw ("Horizontal") * playerMovingSpeed * Time.deltaTime, 0f, 0f));
-		
+		Vector2 v = new Vector2 ();
+		if (Input.GetButton ("Horizontal") && Input.GetAxisRaw("Horizontal") < 0) {
+			v.x = -200 * Time.deltaTime;
+		} else if (Input.GetButton ("Horizontal") && Input.GetAxisRaw("Horizontal") > 0) {
+			v.x = 200 * Time.deltaTime;
+		} else {
+			v.x = 0;
 		}
 
-		if (Input.GetAxisRaw ("Vertical") > 0.5f || Input.GetAxisRaw("Vertical")< 0.5f) {
+		if (Input.GetButton ("Vertical") && Input.GetAxisRaw ("Vertical") < 0) {
+			v.y = -200 * Time.deltaTime;
+		} else if (Input.GetButton ("Vertical") && Input.GetAxisRaw ("Vertical") > 0) {
+			v.y = 200 * Time.deltaTime;
+		} else {
+			v.y = 0;
+		}
 
-			transform.Translate ( new Vector3 (0f, Input.GetAxisRaw ("Vertical") * playerMovingSpeed * Time.deltaTime, 0f));
+
+		GetComponent<Rigidbody2D> ().velocity = v;
+
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		transform.rotation = Quaternion.LookRotation (Vector3.forward, mousePos - transform.position);
+
+
+
+
+		//Shooting
+
+		cur_bullet_cooldown -= Time.deltaTime;
+
+		Vector3 offset = transform.rotation * bulletOffset;
+
+
+
+		bool shooting = Input.GetButton("Fire1");
+		AudioSource audioPlay = GetComponent<AudioSource>();
+
+		if (shooting && cur_bullet_cooldown <= 0) { //cur_bullet_cooldown <= Time.time
+
+			audioPlay.PlayOneShot(bulletFired);
+
+			//Create a bullet object
+			GameObject new_bullet = (GameObject) Instantiate(bullet_obj, this.transform.position + offset, this.transform.rotation * Quaternion.identity);
+			Rigidbody2D new_bullet_physics = new_bullet.GetComponent<Rigidbody2D> ();
+			new_bullet_physics.velocity = this.transform.up * bullet_speed;
+
+			cur_bullet_cooldown = bullet_cooldown;
 
 		}
 
-		//float inputHorizontal = Input.GetAxis ("Horizontal");
-		//float inputVertical = Input.GetAxis ("Vertical");
-		//Vector3 newVelocity=new Vector3(inputVertical*playerMovingSpeed, 0.0f, inputHorizontal*-playerMovingSpeed);
-		//myRigidBody.velocity = newVelocity;
-
-		//Vector2 direction = Camera.main.ScreenToWorldPoint (Input.mousePosition) - transform.position;
-		//float angle = Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg;
-		//Quaternion rotation = Quaternion.AngleAxis (angle, Vector3.forward);
-		//transform.rotation = Quaternion.Slerp (transform.rotation, rotation, mouseRotationSpeed * Time.deltaTime);
 	}
+
+
+
+
+	//Player Die on collision with enemy
+
+	void OnCollisionEnter2D(Collision2D col)   {
+		if (col.gameObject.tag == "enemy" )
+		{
+			Renderer[] renderers = GetComponentsInChildren<Renderer>(); // remove player from view            
+			foreach (Renderer r in renderers)
+			{                
+				r.enabled = false;
+			}
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.PlayOneShot(playerDead);
+			StartCoroutine(pause());
+			GetComponent<BoxCollider2D>().enabled = false; // so it doesnt spam screams if hit multiple times
+
+		}
+
+
+
+
+	}
+
+	//Reset and reload the game
+
+	IEnumerator pause()
+	{
+		yield return new WaitForSeconds(3);
+		//Application.LoadLevel(Application.loadedLevel);
+		UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
