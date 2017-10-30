@@ -17,8 +17,8 @@ public class MortalObject : MonoBehaviour {
 
 	public void takeDamage(int dmg) {
 		hp = hp - dmg;
-		if (hp <= 0) {
-			gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
+		if (hp <= 0 && GetComponent<Die>() != null) {
+			SendMessage ("die");
 		}
 	}
 }

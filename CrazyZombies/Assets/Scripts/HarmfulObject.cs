@@ -13,9 +13,17 @@ public class HarmfulObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		GameObject player = GameObject.FindGameObjectWithTag (harmTarget);
-		if (GetComponent<Rigidbody2D> ().IsTouching (player.GetComponent<Collider2D>()) && player.GetComponent<MortalObject>() != null) {
-			player.SendMessage ("takeDamage", damage);
+	}
+
+	void OnCollisionStay2D(Collision2D coll) {
+		if (harmTarget == "all") {
+			if (coll.gameObject.GetComponent<MortalObject> () != null) {
+				coll.gameObject.SendMessage ("takeDamage", damage);
+			}
+		} else {
+			if (coll.gameObject.tag == harmTarget) {
+				coll.gameObject.SendMessage ("takeDamage", damage);
+			}
 		}
 	}
 }
