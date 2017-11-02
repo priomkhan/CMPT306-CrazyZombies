@@ -33,11 +33,10 @@ public class Bullet : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col)
 	{
 		AudioSource audioPlay = GetComponent<AudioSource>();
-		if ( col.gameObject.tag == "wall" || col.gameObject.tag == "enemy")
+		if ( col.gameObject.tag == "wall" || col.gameObject.tag == "enemy" ||  col.gameObject.tag == "car" || col.gameObject.tag == "Object")
 		{
-			if (col.gameObject.tag == "enemy")
-			{
-				EnemyAI zombie = col.gameObject.GetComponent<EnemyAI>();
+			if (col.gameObject.tag == "enemy") {
+				EnemyAI zombie = col.gameObject.GetComponent<EnemyAI> ();
 				zombie.zombieHit ();
 				zombie.attackPlayer ();
 				if (zombie.getHP () == 0) {
@@ -46,7 +45,7 @@ public class Bullet : MonoBehaviour {
 					Destroy (col.gameObject);
 				}
 
-			}
+			} 
 
 
 

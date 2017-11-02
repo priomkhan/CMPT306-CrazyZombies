@@ -46,9 +46,7 @@ public class PlayerController : MonoBehaviour {
 
 
 		GetComponent<Rigidbody2D> ().velocity = v;
-    Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		transform.rotation = Quaternion.LookRotation (Vector3.forward, mousePos - transform.position);
-
+   
 
 		//Shooting
 
