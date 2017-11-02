@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
+  - player
+  - enemy
+  - bullet
+  - wall
+  - ground
   layers:
   - Default
   - TransparentFX
@@ -14,11 +18,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Zombie
+  - Bullet
+  - Wall
+  - Ground
   - 
   - 
   - 
