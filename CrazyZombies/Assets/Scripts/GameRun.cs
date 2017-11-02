@@ -7,12 +7,10 @@ public class GameRun : MonoBehaviour {
 	public GameObject player;
 	public GameObject target;
 
-
 	public GameObject spawn1;
 	public GameObject spawn2;
 	public GameObject spawn3;
 	public GameObject spawn4;
-
 
 
 	public Texture2D groundImg;
@@ -37,9 +35,6 @@ public class GameRun : MonoBehaviour {
 			targetPosition = new Vector2(Random.Range(0, width), Random.Range(0, height));
 		} while (Vector2.Distance (playerPosition, targetPosition) < minDistance);
 		target.GetComponent<Rigidbody2D> ().position = targetPosition;
-
-
-
 
 
 		Vector2 spwan1Position = new Vector2 (Random.Range (0, width), Random.Range (0, height));
@@ -73,22 +68,6 @@ public class GameRun : MonoBehaviour {
 
 
 
-/*		int x = 0;
-		int y = 0;
-		while (x < 80 && y < 10) {
-			GameObject obj = Instantiate (object1);	
-			Vector2 v;
-			do {
-				v = new Vector2 (100, 100);
-				Debug.Log(v);
-			} while (Physics2D.OverlapArea (v, v) == null);
-
-			//obj.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.None;
-			obj.GetComponent<Rigidbody2D> ().position = v;
-			//obj.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
-			x = Random.Range (0, 100);
-			y++;
-		}*/
 
 	}
 	
@@ -129,6 +108,7 @@ public class GameRun : MonoBehaviour {
 		go.transform.localScale = new Vector3 (1.6f, 1.6f);
 		if (withCollider) {
 			go.AddComponent<BoxCollider2D> ();
+
 			go.layer = 11;
 			go.tag = "wall";
 		} else {
@@ -136,9 +116,6 @@ public class GameRun : MonoBehaviour {
 			go.layer = 12;
 		
 		}
-
-
-
 
 		return go;
 	}

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,7 +46,8 @@ public class PlayerController : MonoBehaviour {
 
 
 		GetComponent<Rigidbody2D> ().velocity = v;
-
+    Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		transform.rotation = Quaternion.LookRotation (Vector3.forward, mousePos - transform.position);
 
 
 		//Shooting
@@ -71,8 +72,7 @@ public class PlayerController : MonoBehaviour {
 
 			cur_bullet_cooldown = bullet_cooldown;
 
-		}
-
+		}    
 	}
 
 
@@ -81,8 +81,7 @@ public class PlayerController : MonoBehaviour {
 	//Player Die on collision with enemy
 
 	void OnCollisionEnter2D(Collision2D col)   {
-		if (col.gameObject.tag == "enemy" )
-		{
+		if (col.gameObject.tag == "enemy" )		{
 			Renderer[] renderers = GetComponentsInChildren<Renderer>(); // remove player from view            
 			foreach (Renderer r in renderers)
 			{                
@@ -94,34 +93,15 @@ public class PlayerController : MonoBehaviour {
 			GetComponent<BoxCollider2D>().enabled = false; // so it doesnt spam screams if hit multiple times
 
 		}
-
-
-
-
 	}
 
 	//Reset and reload the game
 
-	IEnumerator pause()
-	{
+	IEnumerator pause()	{
 		yield return new WaitForSeconds(3);
 		//Application.LoadLevel(Application.loadedLevel);
 		UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 }
