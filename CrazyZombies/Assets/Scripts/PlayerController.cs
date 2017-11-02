@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	private Animator animator;
+	//private Animator animator;
 
 	public GameObject bullet_obj;
 	public float bullet_speed = 5f;
@@ -17,12 +17,16 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		animator = GetComponent<Animator>();
+		//animator = GetComponent<Animator>();
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		Quaternion rotation =  Quaternion.LookRotation ( Vector3.forward, mousePos - transform.position);
+		transform.rotation = rotation;
+			
 		Vector2 v = new Vector2 ();
 		if (Input.GetButton ("Horizontal") && Input.GetAxisRaw("Horizontal") < 0) {
 			v.x = -200 * Time.deltaTime;
@@ -42,10 +46,6 @@ public class PlayerController : MonoBehaviour {
 
 
 		GetComponent<Rigidbody2D> ().velocity = v;
-
-		Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		transform.rotation = Quaternion.LookRotation (Vector3.forward, mousePos - transform.position);
-
 
 
 

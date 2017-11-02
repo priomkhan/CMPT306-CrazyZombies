@@ -37,12 +37,15 @@ public class Bullet : MonoBehaviour {
 		{
 			if (col.gameObject.tag == "enemy")
 			{
+				EnemyAI zombie = col.gameObject.GetComponent<EnemyAI>();
+				zombie.zombieHit ();
+				zombie.attackPlayer ();
+				if (zombie.getHP () == 0) {
+					audioPlay.PlayOneShot (deadZomieSound);
+					gameController.AddScore (scoreValue);
+					Destroy (col.gameObject);
+				}
 
-				audioPlay.PlayOneShot(deadZomieSound);
-				gameController.AddScore (scoreValue);
-				Destroy(col.gameObject);
-
-				//					}
 			}
 
 
