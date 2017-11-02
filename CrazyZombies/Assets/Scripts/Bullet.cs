@@ -33,19 +33,29 @@ public class Bullet : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col)
 	{
 		AudioSource audioPlay = GetComponent<AudioSource>();
-		if ( col.gameObject.tag == "wall" || col.gameObject.tag == "enemy" ||  col.gameObject.tag == "car" || col.gameObject.tag == "Object")
+		if ( col.gameObject.tag == "wall" || col.gameObject.tag == "enemy" ||  col.gameObject.tag == "car" || col.gameObject.tag == "object")
 		{
-			if (col.gameObject.tag == "enemy") {
-				EnemyAI zombie = col.gameObject.GetComponent<EnemyAI> ();
-				zombie.zombieHit ();
-				zombie.attackPlayer ();
-				if (zombie.getHP () == 0) {
-					audioPlay.PlayOneShot (deadZomieSound);
-					gameController.AddScore (scoreValue);
-					Destroy (col.gameObject);
-				}
+//			if (col.gameObject.tag == "enemy") {
+//				EnemyAI zombie = col.gameObject.GetComponent<EnemyAI> ();
+//				zombie.zombieHit ();
+//				zombie.attackPlayer ();
+//				if (zombie.getHP () == 0) {
+//					audioPlay.PlayOneShot (deadZomieSound);
+//					gameController.AddScore (scoreValue);
+//					Destroy (col.gameObject);
+//				}
+//
+//				if (col.gameObject.tag == "car") {
+//				
+//					
+//				}
 
-			} 
+			if (col.gameObject.tag != "object") {
+				col.gameObject.SendMessage ("takeDamage", 1);
+			}
+
+
+
 
 
 

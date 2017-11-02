@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MortalObject : MonoBehaviour {
 	public int hp;
+	public int lowHp = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +16,9 @@ public class MortalObject : MonoBehaviour {
 		
 	}
 
+	public bool isLowHp() {
+		return hp <= lowHp;
+	}
 	public void takeDamage(int dmg) {
 		hp = hp - dmg;
 

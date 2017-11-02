@@ -15,15 +15,25 @@ public class HarmfulObject : MonoBehaviour {
 	void Update () {
 	}
 
-	void OnCollisionStay2D(Collision2D coll) {
-		if (harmTarget == "all") {
-			if (coll.gameObject.GetComponent<MortalObject> () != null) {
-				coll.gameObject.SendMessage ("takeDamage", damage);
-			}
-		} else {
-			if (coll.gameObject.tag == harmTarget) {
-				coll.gameObject.SendMessage ("takeDamage", damage);
-			}
-		}
-	}
+
+//	public void objectHit(){
+//		
+//		hitpoints--;
+//	}
+//
+//	public int getHP(){
+//		return hitpoints;
+//	}
+
+//	void OnCollisionStay2D(Collision2D coll) {
+//		if (harmTarget == "all") {
+//			if (coll.gameObject.GetComponent<MortalObject> () != null) {
+//				coll.gameObject.SendMessage ("takeDamage", damage);
+//			}
+//		} else {
+//			if (coll.gameObject.tag == harmTarget) {
+//				coll.gameObject.SendMessage ("takeDamage", damage);
+//			}
+//		}
+//	}
 }
