@@ -235,7 +235,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 5
-  m_AngularDrag: 2
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -266,13 +266,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb7a1bda679f164a8177ddff4bcec2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 40
   hitpoints: 3
   lowHpThreshHold: 1
-  enemyLineOfSight: 7
+  enemyLineOfSight: 6
   dangerZone: 4
   inRange: 6
-  friendRange: 7
+  friendRange: 6
+  monsterTooFarFromSpawn: 10
   enemyGathering: 2
 --- !u!1 &585805901
 GameObject:
@@ -303,8 +304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints: []
   childs: []
-  spawnTime: 5
-  waitTime: 5
+  spawnTime: 10
+  waitTime: 2
   spawnRateIncrease: 0.1
   enemy: {fileID: 25929554}
   scoreText: {fileID: 888500283}
