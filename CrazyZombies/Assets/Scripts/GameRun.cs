@@ -12,30 +12,32 @@ public class GameRun : MonoBehaviour {
 	public GameObject spawn3;
 	public GameObject spawn4;
 
-
-	public Texture2D groundImg;
-	public Texture2D bottomLeftBorderImg;
-	public Texture2D bottomTopBorderImg;
-	public Texture2D bottomRightBorderImg;
-	public Texture2D leftRightBorderImg;
-	public Texture2D topRightBorderImg;
-	public Texture2D topLeftBorderImg;
-	public int width;
-	public int height;
+	public MapGenerator mapGenerator;
+//	public Texture2D groundImg;
+//	public Texture2D bottomLeftBorderImg;
+//	public Texture2D bottomTopBorderImg;
+//	public Texture2D bottomRightBorderImg;
+//	public Texture2D leftRightBorderImg;
+//	public Texture2D topRightBorderImg;
+//	public Texture2D topLeftBorderImg;
+//	public int width;
+//	public int height;
 
 	// Use this for initialization
 	void Start () {
-		generateMap ();
+		//generateMap ();
+		mapGenerator = GetComponent<MapGenerator>();
 
-		Vector2 playerPosition = new Vector2 (Random.Range (0, width), Random.Range (0, height));
+		Vector2 playerPosition = mapGenerator.getPlayerRespawn();
 		player.GetComponent<Rigidbody2D>().position = playerPosition;
-		float minDistance = Mathf.Sqrt (width * width + height * height) / 2;
-		Vector2 targetPosition;
-		do {
-			targetPosition = new Vector2(Random.Range(0, width), Random.Range(0, height));
-		} while (Vector2.Distance (playerPosition, targetPosition) < minDistance);
-		target.GetComponent<Rigidbody2D> ().position = targetPosition;
-
+//		float minDistance = Mathf.Sqrt (width * width + height * height) / 2;
+//		Vector2 targetPosition;
+//		do {
+//			targetPosition = new Vector2(Random.Range(0, width), Random.Range(0, height));
+//		} while (Vector2.Distance (playerPosition, targetPosition) < minDistance);
+//		target.GetComponent<Rigidbody2D> ().position = targetPosition;
+		int width = mapGenerator.detailedMap().GetLength(0);
+		int height = mapGenerator.detailedMap ().GetLength (1);
 
 		Vector2 spwan1Position = new Vector2 (Random.Range (0, width), Random.Range (0, height));
 		Vector2 spwan2Position = new Vector2 (Random.Range (0, width), Random.Range (0, height));
@@ -76,47 +78,47 @@ public class GameRun : MonoBehaviour {
 		
 	}
 
-	private void generateMap() {
-		createGameObject (bottomLeftBorderImg, -1, -1, true);
-		createGameObject (bottomRightBorderImg, width, -1, true);
-		createGameObject (topLeftBorderImg, -1, height, true);
-		createGameObject (topRightBorderImg, width, height, true);
-		for (int i = 0; i < width; i++) {
-			if (i == 0) {
-				for (int j = 0; j < height; j++) {
-					createGameObject (leftRightBorderImg, -1, j, true);
-				}
-			} else if (i == width - 1) {
-				for (int j = 0; j < height; j++) {
-					createGameObject (leftRightBorderImg, width, j, true);
-				}
-			}
-			createGameObject (bottomTopBorderImg, i, -1, true);
-			createGameObject (bottomTopBorderImg, i, height, true);
-			for (int j = 0; j < height; j++) {
-				createGameObject(groundImg, i ,j, false);
-			}
-		}
-	}
-
-	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider) {
-		GameObject go = new GameObject ();
-		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0.5f, 0.5f));
-		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
-		sr.sprite = sp;
-		go.transform.position = new Vector3 (x, y, 10f);
-		go.transform.localScale = new Vector3 (1.6f, 1.6f);
-		if (withCollider) {
-			go.AddComponent<BoxCollider2D> ();
-
-			go.layer = 11;
-			go.tag = "wall";
-		} else {
-			go.tag = "ground";
-			go.layer = 12;
-		
-		}
-
-		return go;
-	}
+//	private void generateMap() {
+//		createGameObject (bottomLeftBorderImg, -1, -1, true);
+//		createGameObject (bottomRightBorderImg, width, -1, true);
+//		createGameObject (topLeftBorderImg, -1, height, true);
+//		createGameObject (topRightBorderImg, width, height, true);
+//		for (int i = 0; i < width; i++) {
+//			if (i == 0) {
+//				for (int j = 0; j < height; j++) {
+//					createGameObject (leftRightBorderImg, -1, j, true);
+//				}
+//			} else if (i == width - 1) {
+//				for (int j = 0; j < height; j++) {
+//					createGameObject (leftRightBorderImg, width, j, true);
+//				}
+//			}
+//			createGameObject (bottomTopBorderImg, i, -1, true);
+//			createGameObject (bottomTopBorderImg, i, height, true);
+//			for (int j = 0; j < height; j++) {
+//				createGameObject(groundImg, i ,j, false);
+//			}
+//		}
+//	}
+//
+//	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider) {
+//		GameObject go = new GameObject ();
+//		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0.5f, 0.5f));
+//		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+//		sr.sprite = sp;
+//		go.transform.position = new Vector3 (x, y, 10f);
+//		go.transform.localScale = new Vector3 (1.6f, 1.6f);
+//		if (withCollider) {
+//			go.AddComponent<BoxCollider2D> ();
+//
+//			go.layer = 11;
+//			go.tag = "wall";
+//		} else {
+//			go.tag = "ground";
+//			go.layer = 12;
+//		
+//		}
+//
+//		return go;
+//	}
 }

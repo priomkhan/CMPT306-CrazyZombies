@@ -64,6 +64,7 @@ public class MapGenerator : MonoBehaviour {
 		if (withCollider) {
 			go.AddComponent<BoxCollider2D> ();
 		}
+		go.tag = "Object";
 		return go;
 	}
 		
@@ -341,6 +342,7 @@ public class MapGenerator : MonoBehaviour {
 		CarDie cd = go.AddComponent<CarDie> ();
 		cd.explosion = explosion;
 		cd.brokenCarImage = brokenCarImgs[imgIndex];
+		go.tag = "car";
 		return go;
 	}
 		
@@ -350,6 +352,7 @@ public class MapGenerator : MonoBehaviour {
 		hp.hp = Random.Range (0, 3) == 0 ? 10 : 10000;
 		WallDie wd = go.AddComponent<WallDie> ();
 		wd.brokenWallImage = inner ? brokenInnerWallImg : brokenOutWallImg;
+		go.tag = "wall";
 		return go;
 	}
 
