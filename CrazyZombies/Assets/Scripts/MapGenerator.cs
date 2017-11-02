@@ -64,7 +64,8 @@ public class MapGenerator : MonoBehaviour {
 		if (withCollider) {
 			go.AddComponent<BoxCollider2D> ();
 		}
-		go.tag = "Object";
+		go.tag = "object";
+		go.layer = 12;
 		return go;
 	}
 		

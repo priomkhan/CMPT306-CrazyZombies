@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyAI : MonoBehaviour, Die {
 
+	public AudioClip deadZombieSound;
 	public float speed = 40f; // the original speed of the zombie
-	public int hitpoints = 3; // how many hits the zombie can take
-	public float lowHpThreshHold = 1; // when it is considered having low hp to retreat
+//	public int hitpoints = 3; // how many hits the zombie can take
+//	public float lowHpThreshHold = 1; // when it is considered having low hp to retreat
+	private bool dead;
 
 	public float enemyLineOfSight = 6f; 	// the range the zombie are away of the zombie. Chosen because it's ~ half the camera distance
 	public float dangerZone = 4f;    // The Danger zone of enemy, enemy must attack with out wait for friend.
@@ -34,9 +36,22 @@ public class EnemyAI : MonoBehaviour {
 
 	float velocity;
 	Vector3 spawn;
+	private GameController gameController;
 
+	private int scoreValue = 1;
 
 	void Start () {
+
+		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
+		if (gameControllerObject != null)
+		{
+			gameController = gameControllerObject.GetComponent <GameController>();
+		}
+		if (gameController == null)
+		{
+			Debug.Log ("Cannot find 'GameController' script");
+		}
+
 		player = GameObject.FindGameObjectWithTag ("player");
 		originalColor = GetComponent<SpriteRenderer>().color;
 
@@ -113,12 +128,26 @@ public class EnemyAI : MonoBehaviour {
 	}
 
 
-	public void zombieHit(){
-		hitpoints--;
-	}
+//	public void zombieHit(){
+//		hitpoints--;
+//	}
+//
+//	public int getHP(){
+//		return hitpoints;
+//	}
 
-	public int getHP(){
-		return hitpoints;
+	public void die() {
+		AudioSource audioPlay = GetComponent<AudioSource>();
+		if (dead) {
+			return;
+		}
+		Destroy(gameObject.GetComponent<BoxCollider2D>());
+		//gameObject.GetComponent<SpriteRenderer> ().sprite = Sprite.Create(brokenWallImage, new Rect(0, 0, brokenWallImage.width, brokenWallImage.height), new Vector2(0.5f, 0.5f));
+
+		audioPlay.PlayOneShot (deadZombieSound);
+		gameController.AddScore (scoreValue);
+		Destroy(this.gameObject);
+		dead = true;
 	}
 
 	public void attackPlayer(){
@@ -255,12 +284,7 @@ public class EnemyAI : MonoBehaviour {
 	}
 
 	private bool isHpLow(){
-		
-		if (hitpoints <= lowHpThreshHold) {
-			return true;
-		} else {
-			return false;
-		}
+		return GetComponent<MortalObject> ().isLowHp ();	
 	}
 
 	private void retreat(){
