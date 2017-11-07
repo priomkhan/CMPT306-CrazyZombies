@@ -15,7 +15,7 @@ public class MapGenerator : MonoBehaviour {
 	public Texture2D brokenInnerWallImg;
 	public Texture2D[] carImgs;
 	public Texture2D[] brokenCarImgs;
-
+	private bool lengthSet = false;
 	private Vector2 playerRespawn;
 	private int[,] map;
 	private GameObject[,] detailMap;
@@ -24,6 +24,8 @@ public class MapGenerator : MonoBehaviour {
 	void Start () {
 		int width = Random.Range (8, 11);
 		int height = Random.Range (8, 11);
+
+
 
 		map = new int[width,height];
 		detailMap = new GameObject[width * 10, height * 10];
@@ -37,6 +39,9 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 		generateBorder (map);
+
+		lengthSet = true;
+
 	}
 	
 	// Update is called once per frame
@@ -49,6 +54,17 @@ public class MapGenerator : MonoBehaviour {
 
 	public GameObject[,] detailedMap() {
 		return detailMap;
+	}
+
+	public bool isLengthSet(){
+		
+		if (!lengthSet) {
+			return false;
+
+		} else {
+			Debug.Log ("This is called....................");
+			return true;
+		}
 	}
 
 	/**
