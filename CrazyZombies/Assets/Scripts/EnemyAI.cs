@@ -136,6 +136,10 @@ public class EnemyAI : MonoBehaviour, Die {
 //		return hitpoints;
 //	}
 
+	public void lowHp() {
+		// game object behavior when low hp, will called when enter lowHp state
+	}
+
 	public void die() {
 		AudioSource audioPlay = GetComponent<AudioSource>();
 		if (dead) {
