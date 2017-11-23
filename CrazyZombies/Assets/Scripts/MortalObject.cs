@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MortalObject : MonoBehaviour {
 	public int hp;
-	public int currentHP;
+	private int currentHP;
 	private LineRenderer healthBar;
 
 	// Use this for initialization
@@ -37,12 +37,10 @@ public class MortalObject : MonoBehaviour {
 		return currentHP <= hp / 3;
 	}
 	public IEnumerator takeDamage(int dmg) {
-		Debug.Log ("takeDamage:" + dmg);
 		currentHP = currentHP - dmg;
 		if (currentHP < 0) {
 			currentHP = 0;
 		}
-		Debug.Log (currentHP);
 		healthBar.SetPosition (1, new Vector3(gameObject.transform.position.x - 0.5f + currentHP * 1.0f / hp, gameObject.transform.position.y + 1, -1f));
 		healthBar.gameObject.SetActive (true);
 		if (isLowHp ()) {
