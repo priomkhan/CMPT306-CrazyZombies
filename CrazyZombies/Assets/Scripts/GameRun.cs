@@ -29,8 +29,6 @@ public class GameRun : MonoBehaviour {
 	void Start () {
 		mapGenerator = this.gameObject.GetComponent<MapGenerator>();
 
-		Vector2 playerPosition = mapGenerator.getPlayerRespawn();
-		player.GetComponent<Rigidbody2D>().position = playerPosition;
 
 
 
@@ -42,6 +40,7 @@ public class GameRun : MonoBehaviour {
 
 		if (!RunOnce && mapGenerator.isLengthSet()) {
 			createEnemySpawnPosition ();
+			player.GetComponent<Rigidbody2D>().position = mapGenerator.getPlayerRespawn();
 			RunOnce = true;
 		}
 	}

@@ -17,6 +17,10 @@ public class CarDie : MonoBehaviour, Die {
 		
 	}
 
+	public void lowHp() {
+
+	}
+
 	public void die() {
 		if (dead) {
 			return;
