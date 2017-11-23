@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
 			AudioSource audio = GetComponent<AudioSource>();
 			audio.PlayOneShot(playerDead);
 			StartCoroutine(pause());
-			GetComponent<BoxCollider2D>().enabled = false; // so it doesnt spam screams if hit multiple times
+			GetComponent<Collider2D>().enabled = false; // so it doesnt spam screams if hit multiple times
 
 		}
 	}

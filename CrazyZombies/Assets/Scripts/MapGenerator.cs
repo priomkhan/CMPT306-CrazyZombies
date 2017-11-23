@@ -10,12 +10,14 @@ public class MapGenerator : MonoBehaviour {
 	public Texture2D inGroundImg;
 	public Texture2D treeImg;
 	public Texture2D outWallImg;
+	public Texture2D weakOutWallImg;
 	public Texture2D brokenOutWallImg;
 	public Texture2D innerWallImg;
+	public Texture2D weakInnerWallImg;
 	public Texture2D brokenInnerWallImg;
 	public Texture2D[] carImgs;
 	public Texture2D[] brokenCarImgs;
-	private bool lengthSet = false;
+	private bool ready = false;
 	private Vector2 playerRespawn;
 	private int[,] map;
 	private GameObject[,] detailMap;
@@ -40,8 +42,7 @@ public class MapGenerator : MonoBehaviour {
 		}
 		generateBorder (map);
 
-		lengthSet = true;
-
+		ready = true;
 	}
 	
 	// Update is called once per frame
@@ -57,14 +58,7 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	public bool isLengthSet(){
-		
-		if (!lengthSet) {
-			return false;
-
-		} else {
-			Debug.Log ("This is called....................");
-			return true;
-		}
+		return ready;
 	}
 
 	/**
@@ -352,6 +346,11 @@ public class MapGenerator : MonoBehaviour {
 	private GameObject generateCar(float x, float y, float rotation) {
 		int imgIndex = Random.Range (0, carImgs.GetLength (0));
 		GameObject go = createGameObject (carImgs [imgIndex], x, y, true, false);
+		Rigidbody2D rigid = go.AddComponent<Rigidbody2D> ();
+		rigid.mass = 1000;
+		rigid.gravityScale = 0;
+		rigid.drag = 10;
+		rigid.angularDrag = 10;
 		MortalObject hp = go.AddComponent<MortalObject> ();
 		hp.hp = 10;
 		go.transform.Rotate (0, 0, rotation);
@@ -369,6 +368,7 @@ public class MapGenerator : MonoBehaviour {
 		hp.hp = Random.Range (0, 3) == 0 ? 10 : 10000;
 		WallDie wd = go.AddComponent<WallDie> ();
 		wd.brokenWallImage = inner ? brokenInnerWallImg : brokenOutWallImg;
+		wd.weekWallImage = inner ? weakInnerWallImg : weakOutWallImg;
 		go.tag = "wall";
 		return go;
 	}
