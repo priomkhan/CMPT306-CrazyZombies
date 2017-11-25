@@ -760,7 +760,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1001913677}
   - component: {fileID: 1001913678}
-  - component: {fileID: 1001913679}
   m_Layer: 0
   m_Name: level
   m_TagString: Untagged
@@ -789,56 +788,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1001913676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdcb31f4219b4b4c86ccdd7b41c2cc2, type: 3}
+  m_Script: {fileID: 11500000, guid: 98a99b8084e1a024e9d812d35709e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1788389557}
-  target: {fileID: 1831891382}
-  enemySpawnPos: {fileID: 0}
-  levelDeficulty: 1
-  enemySpawnPosition: {fileID: 0}
---- !u!114 &1001913679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1001913676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2cb02c001e14f478d02eddca96552f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1831891382}
-  explosion: {fileID: 987903647}
-  outGroundImg: {fileID: 2800000, guid: 0b99e4f342b85d747a3db90a42370da3, type: 3}
-  inGroundImg: {fileID: 2800000, guid: 057e838de0bf3234d856df6fad3ef39a, type: 3}
-  objectImgs:
-  - {fileID: 2800000, guid: 44622dbeaf7fde84c966821c10c6fc7e, type: 3}
-  - {fileID: 2800000, guid: 56a2b28d5803bdc4581636567075bf07, type: 3}
-  outWallImg: {fileID: 2800000, guid: 8f0392387734b1849850e3c23dfca7b0, type: 3}
-  weakOutWallImg: {fileID: 0}
-  brokenOutWallImg: {fileID: 2800000, guid: 7940ff2a1ba69d9449d766828017e862, type: 3}
-  innerWallImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
-  weakInnerWallImg: {fileID: 0}
-  brokenInnerWallImg: {fileID: 2800000, guid: cb88ce767d670624bb2de465a21fec69, type: 3}
-  carImgs:
-  - {fileID: 2800000, guid: 9022f4747f0c1824f96338aa0250f40c, type: 3}
-  - {fileID: 2800000, guid: c2bd2b83d2c3fc04e84d6144d0ed249f, type: 3}
-  - {fileID: 2800000, guid: f04ad7028538da549b4d5409cf474770, type: 3}
-  - {fileID: 2800000, guid: 2f27fa98af6744346bf4105e1707a2c1, type: 3}
-  - {fileID: 2800000, guid: a92c76142e394c548aba0005717a672f, type: 3}
-  - {fileID: 2800000, guid: 7dde6004e98375043a2aa3b9620f7849, type: 3}
-  - {fileID: 2800000, guid: e8e4ba36562a78844bb5c7abcdb45dd1, type: 3}
-  - {fileID: 2800000, guid: e25648f402904e94bb47b264c1c41d44, type: 3}
-  brokenCarImgs:
-  - {fileID: 2800000, guid: a26e2d4aa22892047b08046a8585f16c, type: 3}
-  - {fileID: 2800000, guid: f94780fa387d12c4c9c667350cf52f17, type: 3}
-  - {fileID: 2800000, guid: 4d7277d4e3099d14687f89076388261b, type: 3}
-  - {fileID: 2800000, guid: 94df3a88211096243bf352502d1591a0, type: 3}
-  - {fileID: 2800000, guid: cfaf751ef2320cc44847471f83b5479b, type: 3}
-  - {fileID: 2800000, guid: 623a2e5afb809ab478ed13337546af36, type: 3}
-  - {fileID: 2800000, guid: 81e0fd258f51caa4989f871c5dcdf04f, type: 3}
-  - {fileID: 2800000, guid: 9f725e37f531b264da65c817a923ffb0, type: 3}
+  wallImg: {fileID: 2800000, guid: 8f0392387734b1849850e3c23dfca7b0, type: 3}
+  floorImg: {fileID: 2800000, guid: 057e838de0bf3234d856df6fad3ef39a, type: 3}
+  doorImg: {fileID: 2800000, guid: 0b99e4f342b85d747a3db90a42370da3, type: 3}
+  entranceDoorImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
+  exitDoorImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
 --- !u!1 &1653713359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,7 +1205,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831891382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5120001, y: 0.512, z: 0}
+  m_LocalPosition: {x: -0.01, y: 10.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
