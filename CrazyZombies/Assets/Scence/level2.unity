@@ -760,6 +760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1001913677}
   - component: {fileID: 1001913678}
+  - component: {fileID: 1001913679}
   m_Layer: 0
   m_Name: level
   m_TagString: Untagged
@@ -791,11 +792,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a99b8084e1a024e9d812d35709e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 1831891382}
   wallImg: {fileID: 2800000, guid: 8f0392387734b1849850e3c23dfca7b0, type: 3}
   floorImg: {fileID: 2800000, guid: 057e838de0bf3234d856df6fad3ef39a, type: 3}
-  doorImg: {fileID: 2800000, guid: 0b99e4f342b85d747a3db90a42370da3, type: 3}
+  doorImg: {fileID: 2800000, guid: 7d0ce38786bebc64f83368ed665fdf9d, type: 3}
+  keyImg: {fileID: 2800000, guid: 7d0ce38786bebc64f83368ed665fdf9d, type: 3}
   entranceDoorImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
   exitDoorImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
+--- !u!114 &1001913679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1001913676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdcb31f4219b4b4c86ccdd7b41c2cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1788389557}
+  target: {fileID: 1831891382}
+  enemySpawnPos: {fileID: 0}
+  levelDeficulty: 2
+  enemySpawnPosition: {fileID: 0}
 --- !u!1 &1653713359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1168,7 @@ GameObject:
   - component: {fileID: 1831891383}
   - component: {fileID: 1831891386}
   - component: {fileID: 1831891385}
+  - component: {fileID: 1831891387}
   m_Layer: 0
   m_Name: target
   m_TagString: Untagged
@@ -1205,7 +1225,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831891382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 10.02, z: 0}
+  m_LocalPosition: {x: 1.09, y: 0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1243,7 +1263,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831891382}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1256,6 +1276,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1831891387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1831891382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ba24566595f194eb656e21a5e68e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1890937467
 GameObject:
   m_ObjectHideFlags: 0

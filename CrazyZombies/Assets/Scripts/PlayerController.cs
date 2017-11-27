@@ -13,12 +13,13 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip bulletFired;
 	public AudioClip playerDead;
 	public Vector3 bulletOffset = new Vector3(2.45f, 3.5f, 0);
+	private List<string> inventory;
 
 
 	// Use this for initialization
 	void Start () {
 		//animator = GetComponent<Animator>();
-
+		inventory = new List<string>();
 	}
 	
 	// Update is called once per frame
@@ -101,5 +102,11 @@ public class PlayerController : MonoBehaviour {
 		UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 	}
 
-	
+	public void getItem(string item) {
+		inventory.Add (item);
+	}
+
+	public bool haveItem(string item) {
+		return inventory.Contains (item);
+	}
 }
