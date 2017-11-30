@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class MapGenerator : MonoBehaviour {
+public class MapGenerator1 : MonoBehaviour, MapGenerator {
 
 	public GameObject target;
 	public GameObject explosion;
 	public Texture2D outGroundImg;
 	public Texture2D inGroundImg;
-	public Texture2D treeImg;
-	public Texture2D outWallImg;
+	public Texture2D[] objectImgs;
+	private float[] objectPossibility;	public Texture2D outWallImg;
 	public Texture2D weakOutWallImg;
 	public Texture2D brokenOutWallImg;
 	public Texture2D innerWallImg;
@@ -26,7 +27,10 @@ public class MapGenerator : MonoBehaviour {
 	void Start () {
 		int width = Random.Range (8, 11);
 		int height = Random.Range (8, 11);
-
+		objectPossibility = new float[objectImgs.GetLength(0)];
+		for (int i = 0; i < objectImgs.GetLength(0); i++) {
+			objectPossibility [i] = 640 * 640 / (objectImgs [0].height * objectImgs [0].width);
+		}
 
 
 		map = new int[width,height];
@@ -167,7 +171,7 @@ public class MapGenerator : MonoBehaviour {
 				} else {
 					int a = Random.Range (0, 10);
 					int b = Random.Range (0, 10);
-					GameObject go = createGameObject (treeImg, x * 10 + a, y * 10 + b, true, false);
+					GameObject go = generateObject (x, y, a, b);
 					go.transform.Rotate(0,0,Random.Range(0,180));
 					detailMap [x * 10 + a, y * 10 + b] = go;
 				}
@@ -456,6 +460,22 @@ public class MapGenerator : MonoBehaviour {
 		lr.material = new Material (Shader.Find("Particles/Alpha Blended Premultiply"));
 		lr.startColor = Color.white;
 		lr.endColor = Color.white;
+		return go;
+	}
+
+	private GameObject generateObject(int x, int y, int a, int b) {
+		float sum = objectPossibility.Sum ();
+		float rand = Random.Range (0, sum);
+		Texture2D img = null;
+		for (int i = 0; i < objectPossibility.GetLength(0); i++) {
+			rand = rand - objectPossibility [i];
+			if (rand <= 0) {
+				img = objectImgs [i];
+				break;
+			}
+		}
+
+		GameObject go = createGameObject (img, x * 10 + a, y * 10 + b, true, false);
 		return go;
 	}
 }
