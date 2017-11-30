@@ -839,12 +839,17 @@ MonoBehaviour:
   explosion: {fileID: 987903647}
   outGroundImg: {fileID: 2800000, guid: 0b99e4f342b85d747a3db90a42370da3, type: 3}
   inGroundImg: {fileID: 2800000, guid: 057e838de0bf3234d856df6fad3ef39a, type: 3}
-  treeImg: {fileID: 2800000, guid: c3e5ac2854c0dd24ba08bf10e0478e0d, type: 3}
+  objectImgs:
+  - {fileID: 2800000, guid: fb748f7d98b52e94dae2d2dfe798eaa8, type: 3}
+  - {fileID: 2800000, guid: dffbbd0c26883564aba583e5c25f4eac, type: 3}
+  - {fileID: 2800000, guid: 522ad3718e6fe094ba5b7579f861f915, type: 3}
+  - {fileID: 2800000, guid: 75107a5e98f77c748a477c5c3429b91f, type: 3}
+  - {fileID: 2800000, guid: e56bcd77e46a774469ada90b331d073c, type: 3}
   outWallImg: {fileID: 2800000, guid: 8f0392387734b1849850e3c23dfca7b0, type: 3}
-  weakOutWallImg: {fileID: 0}
+  weakOutWallImg: {fileID: 2800000, guid: 7940ff2a1ba69d9449d766828017e862, type: 3}
   brokenOutWallImg: {fileID: 2800000, guid: 7940ff2a1ba69d9449d766828017e862, type: 3}
   innerWallImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
-  weakInnerWallImg: {fileID: 0}
+  weakInnerWallImg: {fileID: 2800000, guid: cb88ce767d670624bb2de465a21fec69, type: 3}
   brokenInnerWallImg: {fileID: 2800000, guid: cb88ce767d670624bb2de465a21fec69, type: 3}
   carImgs:
   - {fileID: 2800000, guid: 9022f4747f0c1824f96338aa0250f40c, type: 3}
