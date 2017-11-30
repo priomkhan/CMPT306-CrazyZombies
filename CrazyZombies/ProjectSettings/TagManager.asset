@@ -11,6 +11,7 @@ TagManager:
   - ground
   - car
   - object
+  - Node
   layers:
   - Default
   - TransparentFX

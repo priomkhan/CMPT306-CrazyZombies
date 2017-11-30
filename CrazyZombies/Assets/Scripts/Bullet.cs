@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour {
 	public AudioClip deadZomieSound;
 	private GameController gameController;
 	public int scoreValue = 1;
+	public GameObject bloodPrefab;
 	// Use this for initialization
 	void Start () {
 
@@ -54,9 +55,11 @@ public class Bullet : MonoBehaviour {
 				col.gameObject.SendMessage ("takeDamage", 1);
 			}
 
-
-
-
+			if (col.gameObject.tag == "enemy") {
+				var contact = col.contacts[0]; // get the first contact point info // find the necessary rotation... 
+				var rot = Quaternion.FromToRotation(Vector3.up, contact.normal); 
+				Instantiate(bloodPrefab, contact.point, rot); // and make the enemy bleed 
+			}
 
 
 			gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -69,8 +72,8 @@ public class Bullet : MonoBehaviour {
 			}
 			audioPlay.PlayOneShot(shotFired);
 			Destroy(gameObject, 0f); // destroys bullet
-			GameObject bulletExplosion = (GameObject)Instantiate(fireAnimation, transform.position, transform.rotation * Quaternion.Euler(0, 0, 90));
-			Destroy(bulletExplosion, 0.9f); // distroy expoition animation
+			//GameObject bulletExplosion = (GameObject)Instantiate(fireAnimation, transform.position, transform.rotation * Quaternion.Euler(0, 0, 90));
+//			Destroy(bulletExplosion, 0.9f); // distroy expoition animation
 
 
 
