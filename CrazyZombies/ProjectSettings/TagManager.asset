@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - player
+  - enemy
+  - bullet
+  - wall
+  - ground
+  - car
+  - object
+  - Node
   layers:
   - Default
   - TransparentFX
@@ -13,12 +21,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Zombie
+  - Bullet
+  - Wall
+  - Object
+  - Ground
   - 
   - 
   - 
