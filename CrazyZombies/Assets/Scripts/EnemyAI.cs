@@ -156,9 +156,16 @@ public class EnemyAI : MonoBehaviour, Die {
 	AudioSource audioSource;
 
 
+	NodeControl control;
+	List<Vector2> path;
+	public string layerName;
+
+
 	void Awake(){
 		audioSource = gameObject.GetComponent<AudioSource>();
 		anim = GetComponent<Animator> ();
+		GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+		control = (NodeControl)cam.GetComponent(typeof(NodeControl));
 
 	}
 
@@ -229,6 +236,18 @@ public class EnemyAI : MonoBehaviour, Die {
 			transform.eulerAngles = new Vector3(0, 0, z);
 
 
+//			Debug.Log ("Calling Path");
+//			path = control.Path (player, this.gameObject, layerName);
+//			if (path == null) {
+//				Debug.Log ("No Path Found");
+//			} else {
+//				for (int i = 0; i < path.Count - 1; i++) {
+//					Debug.Log (path.Count);
+//					DrawPath (path [i], path [i + 1], Color.blue);
+//				}
+//			}
+
+
 
 		}
 	}
@@ -247,6 +266,20 @@ public class EnemyAI : MonoBehaviour, Die {
 	//		return hitpoints;
 	//	}
 
+
+
+
+	void DrawPath(Vector2 startPos, Vector2 endPos, Color colorName){
+
+		Vector3 start = new Vector3 (startPos.x, startPos.y, 0.0f);
+		Vector3 end = new Vector3 (endPos.x, endPos.y, 0.0f);
+
+		Debug.DrawLine (start, end, colorName);
+
+
+
+	}
+
 	public void lowHp() {
 		// game object behavior when low hp, will called when enter lowHp state
 	}
@@ -258,10 +291,11 @@ public class EnemyAI : MonoBehaviour, Die {
 		dead = true;
 		gameObject.GetComponent<BoxCollider2D>().enabled = false;
 		gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+		anim.SetFloat ("Speed", 0f);
+		anim.SetTrigger("dead");
 		gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "deadZombie";
 		gameController.AddScore (scoreValue);
-		//audioSource.PlayOneShot(audioSource.clip);
-		anim.SetTrigger("dead");
+		audioSource.PlayOneShot(audioSource.clip);
 		Destroy(gameObject,1.2f);
 	}
 
@@ -429,6 +463,7 @@ public class EnemyAI : MonoBehaviour, Die {
 		Debug.Log("Attacking");
 		runFromPlayer = false;
 		targetPlayer = true;
+		velocity = 3 * speed;
 		enemyAction = TargetInZone;
 	}
 
