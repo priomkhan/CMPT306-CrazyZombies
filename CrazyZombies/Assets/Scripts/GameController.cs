@@ -17,7 +17,8 @@ public class GameController : MonoBehaviour {
 	public float spawnTime = 5f;
 	public float waitTime = 5f;
 	public float spawnRateIncrease = 0.1f;
-	public GameObject enemy;
+	public GameObject[] enemyTypes;
+
 
 	public Text scoreText;
 	private int score;
@@ -108,11 +109,19 @@ public class GameController : MonoBehaviour {
 
 	}
 
+	GameObject randomEnemyCharecter(){
+		int number = Random.Range(0, enemyTypes.Length);
+
+		Debug.Log ("Random Number: " + number);
+
+		return enemyTypes[number];
+	
+	}
 
 	void Spawn()
 	{
 		int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-		GameObject enemyClone = Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+		GameObject enemyClone = Instantiate(randomEnemyCharecter(), spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
 		enemyClone.gameObject.SetActive(true);
 	}
 
