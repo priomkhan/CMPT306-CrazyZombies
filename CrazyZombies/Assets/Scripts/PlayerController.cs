@@ -14,12 +14,13 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip playerDead;
 	public Vector3 bulletOffset = new Vector3(2.45f, 3.5f, 0);
 	private List<string> inventory;
-
+        Animator anim;
 
 	// Use this for initialization
 	void Start () {
 		//animator = GetComponent<Animator>();
 		inventory = new List<string>();
+		anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -31,47 +32,55 @@ public class PlayerController : MonoBehaviour {
 		Vector2 v = new Vector2 ();
 		if (Input.GetButton ("Horizontal") && Input.GetAxisRaw("Horizontal") < 0) {
 			v.x = -200 * Time.deltaTime;
+			anim.SetFloat ("Speed", 0.2f);
 		} else if (Input.GetButton ("Horizontal") && Input.GetAxisRaw("Horizontal") > 0) {
 			v.x = 200 * Time.deltaTime;
+			anim.SetFloat ("Speed", 0.2f);
 		} else {
 			v.x = 0;
+			anim.SetFloat ("Speed", 0.0f);
 		}
 
 		if (Input.GetButton ("Vertical") && Input.GetAxisRaw ("Vertical") < 0) {
 			v.y = -200 * Time.deltaTime;
+			anim.SetFloat ("Speed", 0.2f);
 		} else if (Input.GetButton ("Vertical") && Input.GetAxisRaw ("Vertical") > 0) {
 			v.y = 200 * Time.deltaTime;
+			anim.SetFloat ("Speed", 0.2f);
 		} else {
 			v.y = 0;
+			anim.SetFloat ("Speed", 0.0f);
 		}
 
 
 		GetComponent<Rigidbody2D> ().velocity = v;
-   
+
 
 		//Shooting
 
 		cur_bullet_cooldown -= Time.deltaTime;
 
 		Vector3 offset = transform.rotation * bulletOffset;
-
-
-
 		bool shooting = Input.GetButton("Fire1");
+
 		AudioSource audioPlay = GetComponent<AudioSource>();
 
+
 		if (shooting && cur_bullet_cooldown <= 0) { //cur_bullet_cooldown <= Time.time
+			
 
 			audioPlay.PlayOneShot(bulletFired);
-
+			anim.SetTrigger ("Shoot");
 			//Create a bullet object
 			GameObject new_bullet = (GameObject) Instantiate(bullet_obj, this.transform.position + offset, this.transform.rotation * Quaternion.identity);
 			Rigidbody2D new_bullet_physics = new_bullet.GetComponent<Rigidbody2D> ();
 			new_bullet_physics.velocity = this.transform.up * bullet_speed;
 
 			cur_bullet_cooldown = bullet_cooldown;
+			//anim.SetBool ("Shoot",false);
 
-		}    
+		}  
+
 	}
 
 

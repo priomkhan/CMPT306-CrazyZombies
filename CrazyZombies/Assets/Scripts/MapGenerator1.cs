@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
-public class MapGenerator1 : MonoBehaviour, MapGenerator {
+public class MapGenerator : MonoBehaviour {
 
 	public GameObject target;
 	public GameObject explosion;
 	public Texture2D outGroundImg;
 	public Texture2D inGroundImg;
-	public Texture2D[] objectImgs;
-	private float[] objectPossibility;
+	public Texture2D treeImg;
 	public Texture2D outWallImg;
 	public Texture2D weakOutWallImg;
 	public Texture2D brokenOutWallImg;
@@ -24,16 +22,12 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 	private int[,] map;
 	private GameObject[,] detailMap;
 
-
 	// Use this for initialization
 	void Start () {
 		int width = Random.Range (8, 11);
 		int height = Random.Range (8, 11);
-		objectPossibility = new float[objectImgs.GetLength(0)];
-		for (int i = 0; i < objectImgs.GetLength(0); i++) {
-			objectPossibility [i] = 640 * 640 / (objectImgs [0].height * objectImgs [0].width);
-			Debug.Log ("object:" + objectImgs [0].height * objectImgs [0].width);
-		}
+
+
 
 		map = new int[width,height];
 		detailMap = new GameObject[width * 10, height * 10];
@@ -79,11 +73,79 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		go.transform.localScale = new Vector3 (1.6f, 1.6f);
 		if (withCollider) {
 			go.AddComponent<BoxCollider2D> ();
+			addNodes (go);//Adding Nodes for path finding
 		}
 		go.tag = "object";
 		go.layer = 12;
+
+
+
+
+
+
 		return go;
 	}
+
+
+
+
+	private void addNodes(GameObject gameObject){
+		float xPos = gameObject.GetComponent<BoxCollider2D> ().size.x+0.1f;
+		float yPos = gameObject.GetComponent<BoxCollider2D> ().size.y+0.1f;
+		//Vector3 center = new Vector2(gameObject.transform.position.x,gameObject.transform.position.y,0);
+		Vector3 center = gameObject.transform.position;
+		Vector3 bottomLeft = center + new Vector3 (-xPos, -yPos,0);
+		Vector3 bottomRight = center + new Vector3 (xPos, -yPos,0);
+		Vector3 topLeft = center + new Vector3 (-xPos, yPos,0);
+		Vector3 topRight = center+ new Vector3 (xPos, yPos,0);
+
+		GameObject nodeBottomLeft = new GameObject ();
+		nodeBottomLeft.name = "NodeBottomLeft";
+		nodeBottomLeft.transform.position = bottomLeft;
+		nodeBottomLeft.transform.parent = gameObject.transform;
+		nodeBottomLeft.AddComponent<SpriteRenderer>();
+		//enemySpawnPos.GetComponent<SpriteRenderer> ().sprite = (Sprite) Resources.Load ("TestArt/Objects/tile_368/tile_368");
+		nodeBottomLeft.GetComponent<SpriteRenderer> ().sprite = GameObject.FindGameObjectWithTag("Node").GetComponent<SpriteRenderer>().sprite;
+		nodeBottomLeft.layer = 12;
+		nodeBottomLeft.tag = "Node";
+		nodeBottomLeft.GetComponent<SpriteRenderer> ().sortingOrder = 0;
+
+
+		GameObject nodeBottomRight = new GameObject ();
+		nodeBottomRight.name = "NodeBottomRight";
+		nodeBottomRight.transform.position = bottomRight;
+		nodeBottomRight.transform.parent = gameObject.transform;
+		nodeBottomRight.AddComponent<SpriteRenderer>();
+		nodeBottomRight.GetComponent<SpriteRenderer> ().sprite = GameObject.FindGameObjectWithTag("Node").GetComponent<SpriteRenderer>().sprite;
+		nodeBottomRight.layer = 12;
+		nodeBottomRight.tag = "Node";
+		nodeBottomRight.GetComponent<SpriteRenderer> ().sortingOrder = 0;
+
+		GameObject nodeTopLeft = new GameObject ();
+		nodeTopLeft.name = "NodeTopLeft";
+		nodeTopLeft.transform.position = topLeft;
+		nodeTopLeft.transform.parent = gameObject.transform;
+		nodeTopLeft.AddComponent<SpriteRenderer>();
+		nodeTopLeft.GetComponent<SpriteRenderer> ().sprite = GameObject.FindGameObjectWithTag("Node").GetComponent<SpriteRenderer>().sprite;
+		nodeTopLeft.layer = 12;
+		nodeTopLeft.tag = "Node";
+		nodeTopLeft.GetComponent<SpriteRenderer> ().sortingOrder = 0;
+
+		GameObject nodeTopRightt = new GameObject ();
+		nodeTopRightt.name = "NodeTopRight";
+		nodeTopRightt.transform.position = topRight;
+		nodeTopRightt.transform.parent = gameObject.transform;
+		nodeTopRightt.AddComponent<SpriteRenderer>();
+		nodeTopRightt.GetComponent<SpriteRenderer> ().sprite = GameObject.FindGameObjectWithTag("Node").GetComponent<SpriteRenderer>().sprite;
+		nodeTopRightt.layer = 12;
+		nodeTopRightt.tag = "Node";
+		nodeTopRightt.GetComponent<SpriteRenderer> ().sortingOrder = 0;
+
+
+	}
+
+
+
 		
 	/**
 	 * generate 10*10 block of map
@@ -105,7 +167,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 				} else {
 					int a = Random.Range (0, 10);
 					int b = Random.Range (0, 10);
-					GameObject go = generateObject (x, y, a, b);
+					GameObject go = createGameObject (treeImg, x * 10 + a, y * 10 + b, true, false);
 					go.transform.Rotate(0,0,Random.Range(0,180));
 					detailMap [x * 10 + a, y * 10 + b] = go;
 				}
@@ -113,6 +175,11 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		}
 
 	}
+
+
+
+
+
 
 	/**
 	 * generate hospital area, inner wall and out wall
@@ -389,22 +456,6 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		lr.material = new Material (Shader.Find("Particles/Alpha Blended Premultiply"));
 		lr.startColor = Color.white;
 		lr.endColor = Color.white;
-		return go;
-	}
-
-	private GameObject generateObject(int x, int y, int a, int b) {
-		float sum = objectPossibility.Sum ();
-		float rand = Random.Range (0, sum);
-		Texture2D img = null;
-		for (int i = 0; i < objectPossibility.GetLength(0); i++) {
-			rand = rand - objectPossibility [i];
-			if (rand <= 0) {
-				img = objectImgs [i];
-				break;
-			}
-		}
-
-		GameObject go = createGameObject (img, x * 10 + a, y * 10 + b, true, false);
 		return go;
 	}
 }
