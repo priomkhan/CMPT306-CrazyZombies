@@ -20,7 +20,7 @@ public class GameRun : MonoBehaviour {
 
 	private MapGenerator mapGenerator;
 
-	public Sprite enemySpawnPosition;
+	public GameObject spawnDoorObj;
 
 	int width=0;
 	int height=0;
@@ -64,18 +64,18 @@ public class GameRun : MonoBehaviour {
 				Vector2 spwanPosition = new Vector2 (Random.Range (0, width), Random.Range (0, height));	
 
 
-				enemySpawnPos = new GameObject ();
-
-				enemySpawnPos.name = "spawn"+i;
-				enemySpawnPos.transform.position = spwanPosition;
+				enemySpawnPos = Instantiate(spawnDoorObj,spwanPosition,spawnDoorObj.transform.rotation);
+				enemySpawnPos.SetActive (true);
+				enemySpawnPos.name = "spawnDoor"+i;
+//				enemySpawnPos.transform.position = spwanPosition;
 				enemySpawnPos.transform.parent = GameController.transform;
-				enemySpawnPos.AddComponent<SpriteRenderer>();
-				//enemySpawnPos.GetComponent<SpriteRenderer> ().sprite = (Sprite) Resources.Load ("TestArt/Objects/tile_368/tile_368");
-				enemySpawnPos.GetComponent<SpriteRenderer> ().sprite = enemySpawnPosition;
-				enemySpawnPos.AddComponent<BoxCollider2D> ();
-				enemySpawnPos.layer = 12;
-				enemySpawnPos.tag = "object";
-				enemySpawnPos.GetComponent<SpriteRenderer> ().sortingOrder = 0;
+//				enemySpawnPos.AddComponent<SpriteRenderer>();
+//				//enemySpawnPos.GetComponent<SpriteRenderer> ().sprite = (Sprite) Resources.Load ("TestArt/Objects/tile_368/tile_368");
+//				enemySpawnPos.GetComponent<SpriteRenderer> ().sprite = spawnDoorObj;
+//				enemySpawnPos.AddComponent<BoxCollider2D> ();
+//				enemySpawnPos.layer = 12;
+//				enemySpawnPos.tag = "object";
+//				enemySpawnPos.GetComponent<SpriteRenderer> ().sortingOrder = 0;
 
 			}
 

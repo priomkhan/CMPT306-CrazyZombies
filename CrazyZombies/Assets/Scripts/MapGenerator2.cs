@@ -7,6 +7,7 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	public Texture2D wallImg;
 	public Texture2D floorImg;
 	public Texture2D doorImg;
+	public GameObject doorObj;
 	public Texture2D keyImg;
 	public Texture2D entranceDoorImg;
 	public Texture2D exitDoorImg;
@@ -19,7 +20,6 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 		int height = Random.Range (3, 5);
 		rooms = new int[2, height];
 		detailMap = new GameObject[25, height * 10];
-
 		generateRoomLayout ();
 		generateFloor();
 		for (int i = 0; i < height; i++) {
@@ -60,6 +60,27 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 		go.transform.localScale = new Vector3 (1.6f, 1.6f);
 		if (withCollider) {
 			go.AddComponent<BoxCollider2D> ();
+		}
+		go.tag = "object";
+		go.layer = 12;
+		return go;
+	}
+
+
+	/**
+	 * Generate door object at position (x,y) with texture img 
+	 */
+	private GameObject createDoorGameObject(Texture2D img, float x, float y, bool withCollider,bool isBackground) {
+		GameObject go = new GameObject ();
+		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0f, 0f));
+		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+		sr.sprite = sp;
+		go.transform.position = new Vector3 (x, y, isBackground ? 10f : 0f);
+		go.transform.localScale = new Vector3 (1.6f, 1.6f);
+		if (withCollider) {
+			BoxCollider2D newCol= go.AddComponent<BoxCollider2D> ();
+			newCol.size = new Vector2 (0.65f, 1.5f);
+			//newCol.offset = new Vector2 (0.32f, 0.4f);
 		}
 		go.tag = "object";
 		go.layer = 12;
@@ -163,13 +184,18 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	private GameObject generateDoor(int x, int y, Color color) {
 		GameObject go = null;
 		if (x == 0) {
-			go = createGameObject (doorImg, 9, y * 10 + 4, true, false);
+			go = createDoorGameObject (doorImg, 9, y * 10 + 4.2f, true, false);
+			//go = Instantiate(doorObj,new Vector3(x,y,0),doorObj.transform.rotation);
 		} else {
-			go = createGameObject (doorImg, 15, y * 10 + 4, true, false);
+			go = createDoorGameObject (doorImg, 15, y * 10 + 4.3f, true, false);
+			//go = Instantiate(doorObj,new Vector3(x,y,0),doorObj.transform.rotation);
 		}
 		go.GetComponent<SpriteRenderer> ().color = color;
+		Animator newAnim = go.AddComponent<Animator> ();
+		newAnim.runtimeAnimatorController = doorObj.GetComponent<Animator> ().runtimeAnimatorController;
 		DoorScript door = go.AddComponent<DoorScript> ();
 		door.color = color;
+		go.transform.rotation = doorObj.transform.rotation;
 		return go;
 	}
 
@@ -183,6 +209,7 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 		go.GetComponent<SpriteRenderer> ().color = color;
 		KeyScript key = go.AddComponent<KeyScript> ();
 		key.color = color;
+		go.gameObject.SetActive (true);
 		return go;
 	}
 }

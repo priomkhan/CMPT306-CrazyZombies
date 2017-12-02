@@ -12,6 +12,7 @@ TagManager:
   - car
   - object
   - Node
+  - spawnDoor
   layers:
   - Default
   - TransparentFX
