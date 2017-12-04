@@ -12,6 +12,7 @@ TagManager:
   - car
   - object
   - Node
+  - fence
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Wall
   - Object
   - Ground
-  - 
+  - Fence
   - 
   - 
   - 
