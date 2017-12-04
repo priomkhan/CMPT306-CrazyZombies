@@ -121,8 +121,11 @@ public class GameController : MonoBehaviour {
 	void Spawn()
 	{
 		int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+		Animator anim = spawnPoints [spawnPointIndex].transform.GetComponent<Animator> ();
+		anim.SetBool ("spawnDoorOpen", true);
 		GameObject enemyClone = Instantiate(randomEnemyCharecter(), spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
 		enemyClone.gameObject.SetActive(true);
+		anim.SetBool ("spawnDoorOpen", false);
 	}
 
 
