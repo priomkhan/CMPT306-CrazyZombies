@@ -12,6 +12,7 @@ TagManager:
   - car
   - object
   - Node
+  - fence
   - spawnDoor
   layers:
   - Default
@@ -28,7 +29,7 @@ TagManager:
   - Wall
   - Object
   - Ground
-  - 
+  - Fence
   - 
   - 
   - 
