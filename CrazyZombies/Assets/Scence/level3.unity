@@ -476,10 +476,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1111346141388848, guid: a372da2954ce90443b83d26fa98c98aa, type: 2}
-  target: {fileID: 1526932569}
+  target: {fileID: 845045415}
   enemySpawnPos: {fileID: 845045415}
   levelDeficulty: 1
   spawnDoorObj: {fileID: 787938811}
+  levelStartImg: {fileID: 2800000, guid: f6e7e84fbcdb4904098f73dc3a4ab87c, type: 3}
+  imageStayTime: 0.5
+  timeLimit: 10
 --- !u!4 &752966588
 Transform:
   m_ObjectHideFlags: 0
@@ -606,7 +609,7 @@ Transform:
   m_LocalScale: {x: 1.7491597, y: 1.605468, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &845045415
 GameObject:
@@ -624,6 +627,7 @@ GameObject:
   - component: {fileID: 845045419}
   - component: {fileID: 845045418}
   - component: {fileID: 845045417}
+  - component: {fileID: 845045426}
   - component: {fileID: 845045416}
   m_Layer: 9
   m_Name: wife
@@ -884,8 +888,28 @@ Transform:
   m_LocalScale: {x: 1.4264898, y: 1.2337643, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &845045426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 845045415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea9fdbb33769ed488a974e7f3162c06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  enemyLineOfSight: 16
+  dangerZone: 10
+  inRange: 14
+  friendRange: 8
+  monsterTooFarFromSpawn: 15
+  enemyGathering: 2
+  layerName: Object
+  levelName: level1
 --- !u!1 &942128929 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1111346141388848, guid: a372da2954ce90443b83d26fa98c98aa,
@@ -1035,7 +1059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb7a1bda679f164a8177ddff4bcec2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 8
   enemyLineOfSight: 16
   dangerZone: 10
   inRange: 14
@@ -1163,11 +1187,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 957656430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.94, y: 3.211, z: 0}
+  m_LocalPosition: {x: 11.89, y: 3.211, z: 0}
   m_LocalScale: {x: 3.4818132, y: 4.1215196, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1237660983
 Prefab:
@@ -1206,7 +1230,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4929740509714668, guid: a372da2954ce90443b83d26fa98c98aa, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114730126902858352, guid: a372da2954ce90443b83d26fa98c98aa,
         type: 2}
@@ -1222,6 +1246,11 @@ Prefab:
         type: 2}
       propertyPath: layerMask.m_Bits
       value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 114158044115656060, guid: a372da2954ce90443b83d26fa98c98aa,
+        type: 2}
+      propertyPath: levelName
+      value: level1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a372da2954ce90443b83d26fa98c98aa, type: 2}
@@ -1295,7 +1324,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1526932569
 GameObject:
@@ -1729,7 +1758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1933573037
 Animator:
   serializedVersion: 3

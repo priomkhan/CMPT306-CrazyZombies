@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour {
 
 	//private Animator animator;
@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip playerDead;
 	public Vector3 bulletOffset = new Vector3(2.45f, 3.5f, 0);
 	private List<string> inventory;
-        Animator anim;
+    Animator anim;
+	public string levelName;
 
 	// Use this for initialization
 	void Start () {
@@ -101,13 +102,25 @@ public class PlayerController : MonoBehaviour {
 			GetComponent<Collider2D>().enabled = false; // so it doesnt spam screams if hit multiple times
 
 		}
+
+		if (col.gameObject.tag == "wife") {
+			Renderer[] renderers = GetComponentsInChildren<Renderer>(); // remove player from view            
+			foreach (Renderer r in renderers)
+			{                
+				r.enabled = false;
+			}
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.PlayOneShot(playerDead);
+			GetComponent<Collider2D>().enabled = false; // so it doesnt spam screams if hit multiple times
+			SceneManager.LoadScene (levelName);
+		}
 	}
 
 	//Reset and reload the game
 
 	IEnumerator pause()	{
 		yield return new WaitForSeconds(3);
-		//Application.LoadLevel(Application.loadedLevel);
+
 		UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 	}
 
