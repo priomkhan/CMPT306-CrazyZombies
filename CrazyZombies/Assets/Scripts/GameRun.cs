@@ -22,6 +22,18 @@ public class GameRun : MonoBehaviour {
 
 	public GameObject spawnDoorObj;
 
+	public Texture2D levelStartImg;
+
+	private bool isAppearing = false; //switch on/off the image (if true is showing, if false is hidden)
+
+	private bool isLevelImgShown = false;
+
+	public float imageStayTime = 0.5f; //Time the image should stay on screen
+
+	private float time; //Time passing in seconds
+	public float timeLimit = 10f; //The time limit the picture have to appear
+
+
 	int width=0;
 	int height=0;
 
@@ -42,7 +54,13 @@ public class GameRun : MonoBehaviour {
 			createEnemySpawnPosition ();
 			player.GetComponent<Rigidbody2D>().position = mapGenerator.getPlayerRespawn();
 			RunOnce = true;
+
 		}
+		if (!isLevelImgShown) {
+			StartCoroutine ("ShowLevelImg");
+			isLevelImgShown = true;
+		}
+
 	}
 
 
@@ -83,8 +101,29 @@ public class GameRun : MonoBehaviour {
 
 		}
 
+	}
+	IEnumerator ShowLevelImg () {
+		//time += Time.deltaTime * 1;
+
+	//	while(time > timeLimit){
+			isAppearing = true;
+			yield return new WaitForSeconds(imageStayTime); 
+			isAppearing = false;
+		//	time = 0;
+
+		//}
+			yield return null;
+	}
+
+	void OnGUI() 
+	{ 
+		if(isAppearing){
+			GUI.DrawTexture ( new Rect (0,0, Screen.width, Screen.height), levelStartImg);
+		}
+	}
+
 
 	
-	}
+
 		
 }
