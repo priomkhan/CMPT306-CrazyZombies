@@ -13,6 +13,7 @@ TagManager:
   - object
   - Node
   - fence
+  - spawnDoor
   layers:
   - Default
   - TransparentFX
