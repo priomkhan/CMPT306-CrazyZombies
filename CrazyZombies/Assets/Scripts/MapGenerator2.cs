@@ -54,7 +54,7 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	 */
 	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider,bool isBackground) {
 		GameObject go = new GameObject ();
-		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0f, 0f));
+		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0.5f, 0.5f));
 		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
 		sr.sprite = sp;
 		go.transform.position = new Vector3 (x, y, isBackground ? 10f : 0f);
@@ -214,29 +214,26 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	}
 
 	private void generateRoomLayout() {
-		Vector2[] roomInfo = new Vector2[4];
+		List<Vector2> roomInfo = new List<Vector2> ();;
 		int keys = 5;
-		for (int index = 0; index <= roomInfo.GetLength (0); index++) {
+		for (int index = 0; index < 5; index++) {
 			Vector2 roomPos = new Vector2();
 			do {
 				int targetRoom = Random.Range (0, rooms.GetLength (0) * rooms.GetLength (1));
 				roomPos = new Vector2(targetRoom / rooms.GetLength (1), targetRoom % rooms.GetLength (1));
 			} while (rooms[Mathf.FloorToInt(roomPos.x), Mathf.FloorToInt(roomPos.y)] > 0);
 			// Lock door
-			for (int i = 0; i < roomInfo.GetLength (0); i++) {
-				if (roomInfo [i] != null) {
-					rooms [Mathf.FloorToInt (roomInfo [i].x), Mathf.FloorToInt (roomInfo [i].y)] *= 10;
-				}
+			foreach (Vector2 v in roomInfo) {
+				rooms [Mathf.FloorToInt (v.x), Mathf.FloorToInt (v.y)] *= 10;
 			}
+				
 			// Put key
 			rooms [Mathf.FloorToInt (roomPos.x), Mathf.FloorToInt (roomPos.y)] = keys;
-			if (index != roomInfo.GetLength(0)) {
-				roomInfo [index] = roomPos;
-			}
+			roomInfo.Add(roomPos);
 
 			keys--;
 		}
-//		for (int i = 0; i < roomInfo.GetLength (0); i++) {
+//		for (int i = 0; i < roomInfo.Count; i++) {
 //			Debug.Log("Test:"+rooms [Mathf.FloorToInt (roomInfo [i].x), Mathf.FloorToInt (roomInfo [i].y)].ToString());
 //		}
 	}
