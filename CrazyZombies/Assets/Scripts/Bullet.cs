@@ -34,7 +34,13 @@ public class Bullet : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col)
 	{
 		AudioSource audioPlay = GetComponent<AudioSource>();
-		if ( col.gameObject.tag == "wall" || col.gameObject.tag == "enemy" ||  col.gameObject.tag == "car" || col.gameObject.tag == "object")
+		if ( col.gameObject.tag == "wall" ||
+			col.gameObject.tag == "enemy" ||
+			col.gameObject.tag == "car" ||
+			col.gameObject.tag == "object" ||
+			col.gameObject.tag == "spawnDoor" ||
+			col.gameObject.tag == "fence")
+		//if ( col.gameObject.layer == 12)
 		{
 //			if (col.gameObject.tag == "enemy") {
 //				EnemyAI zombie = col.gameObject.GetComponent<EnemyAI> ();

@@ -4,123 +4,6 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour, Die {
 
-	//	public AudioClip deadZombieSound;
-	//	public float speed = 40f; // the original speed of the zombie
-	////	public int hitpoints = 3; // how many hits the zombie can take
-	////	public float lowHpThreshHold = 1; // when it is considered having low hp to retreat
-	//	private bool dead;
-	//
-	//	public float enemyLineOfSight = 6f; 	// the range the zombie are away of the zombie. Chosen because it's ~ half the camera distance
-	//	public float dangerZone = 4f;    // The Danger zone of enemy, enemy must attack with out wait for friend.
-	//	public float inRange = 6f; 	// the range the player is to attack it, should be less than the threat zone but not miniscule
-	//
-	//	public float friendRange = 6f; 	// the range when friendlies are close enough to help attack. 
-	//									//Chosen based on zombie size, only other zombie in range will help chase
-	//									// down the player
-	//									// Use this for initialization
-	//	public float monsterTooFarFromSpawn = 7f; 	// about a quarter of the map, allows zombie to "control a corner" of the map if the player
-	//												// is out of range.
-	//
-	//	public int enemyGathering = 2;
-	//
-	//
-	//
-	//	delegate void MyDelegate();
-	//	MyDelegate enemyAction;
-	//
-	//	float distanceOfPlayer;
-	//	float distanceOfSpawn;
-	//
-	//	bool targetPlayer = false;
-	//	bool runFromPlayer = false;
-	//	GameObject player;
-	//	UnityEngine.Color originalColor;
-	//
-	//	float velocity;
-	//	Vector3 spawn;
-	//	private GameController gameController;
-	//
-	//	private int scoreValue = 1;
-
-	//	void Start () {
-	//
-	//		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
-	//		if (gameControllerObject != null)
-	//		{
-	//			gameController = gameControllerObject.GetComponent <GameController>();
-	//		}
-	//		if (gameController == null)
-	//		{
-	//			Debug.Log ("Cannot find 'GameController' script");
-	//		}
-	//
-	//		player = GameObject.FindGameObjectWithTag ("player");
-	//		originalColor = GetComponent<SpriteRenderer>().color;
-	//
-	//		if (player != null) {
-	//			//Debug.Log ("Player Found");
-	//			enemyAction = TargetInZone;
-	//		} else {
-	//			Debug.Log ("Player Referance Missing");
-	//		}
-	//
-	//		spawn = this.transform.position;
-	//
-	//		//InvokeRepeating ("Wait_decision", 1, 1);
-	//
-	//	}
-
-	// Update is called once per frame
-	//	void Update () {
-	//
-	//		enemyAction();
-	//
-	//		distanceOfPlayer = Vector3.Distance (this.gameObject.transform.position, player.transform.position);
-	//
-	//		distanceOfSpawn = Vector3.Distance (spawn, this.gameObject.transform.position);
-	//
-	//
-	//		if (targetPlayer) {
-	//
-	//			Vector2 v = new Vector2 ();
-	//			v.x = player.transform.position.x - transform.position.x;
-	//			v.y = player.transform.position.y - transform.position.y;
-	//			if (v.magnitude != 0) {
-	//				if (runFromPlayer) {
-	//					Vector2 v2 = new Vector2 ();
-	//					v2.x = -v.x * speed*2 / v.magnitude * Time.deltaTime;
-	//					v2.y = -v.y * speed*2 / v.magnitude * Time.deltaTime;
-	//
-	//					GetComponent<Rigidbody2D> ().velocity = v2;
-	//				} else {
-	//					Vector2 v2 = new Vector2 ();
-	//					v2.x = v.x * speed / v.magnitude * Time.deltaTime;
-	//					v2.y = v.y * speed / v.magnitude * Time.deltaTime;
-	//
-	//					GetComponent<Rigidbody2D> ().velocity = v2;
-	//				}
-	//
-	//			}
-	//
-	//			Vector2 dir = player.transform.position - transform.position;
-	//			if (dir != Vector2.zero) {
-	//				float angle;
-	//				if (runFromPlayer) {
-	//					angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg - 180;
-	//				} else {
-	//					angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
-	//				}
-	//
-	//				transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);	
-	//
-	//			}
-	//				
-	//		}
-	//	}
-
-
-
-
 	//public AudioClip deadZombieSound;
 	public float speed = 5f; // the original speed of the zombie
 	public float enemyLineOfSight = 16f; 	// the range the zombie are away of the zombie. Chosen because it's ~ half the camera distance
@@ -155,7 +38,7 @@ public class EnemyAI : MonoBehaviour, Die {
 	Animator anim;
 	AudioSource audioSource;
 
-
+	int targetIndex;
 	NodeControl control;
 	List<Vector2> path;
 	public string layerName;
@@ -164,8 +47,8 @@ public class EnemyAI : MonoBehaviour, Die {
 	void Awake(){
 		audioSource = gameObject.GetComponent<AudioSource>();
 		anim = GetComponent<Animator> ();
-		GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
-		control = (NodeControl)cam.GetComponent(typeof(NodeControl));
+
+
 
 	}
 
@@ -191,12 +74,15 @@ public class EnemyAI : MonoBehaviour, Die {
 			Debug.Log ("Player Referance Missing");
 		}
 
+		control = (NodeControl)player.GetComponent(typeof(NodeControl));
+
 		velocity = speed;
 
 		spawn = this.transform.position;
 
 		//enemyAction();
 		InvokeRepeating ("Wait_decision", 1, 1);
+		InvokeRepeating("findPath", 1.0f, 1.15f); //Need to comment out for without PathFinding
 
 	}
 
@@ -225,32 +111,54 @@ public class EnemyAI : MonoBehaviour, Die {
 
 		GetComponent<Rigidbody2D>().AddForce(gameObject.transform.right * velocity);
 
+		//Without Path finding
+//		if (targetPlayer) {
+//			float z = Mathf.Atan2 ((player.transform.position.y - transform.position.y), 
+//				          (player.transform.position.x - transform.position.x)) * Mathf.Rad2Deg;
+//
+//			if (runFromPlayer) {
+//				z = -z;
+//			}
+//			transform.eulerAngles = new Vector3 (0, 0, z);
+//
+//		}
+
+	}
+
+
+	public void findPath() {
 
 		if (targetPlayer) {
-			float z = Mathf.Atan2((player.transform.position.y - transform.position.y), 
-				(player.transform.position.x - transform.position.x)) * Mathf.Rad2Deg;
 
-			if (runFromPlayer) {
-				z = -z;
+			path = control.Path (this.gameObject, layerName);
+			//transform.eulerAngles = new Vector3(0, 0, z);
+			float z = 0;
+			if (path == null) {
+				Debug.Log ("No Path Found");
+			} else {
+
+
+				z = Mathf.Atan2 ((path [1].y - transform.position.y), 
+					(path [1].x - transform.position.x)) * Mathf.Rad2Deg;
+
+				if (runFromPlayer) {
+					z = -z;
+				}
+
+
+
+				for (int i = 0; i < path.Count - 1; i++) {
+					Debug.Log (path.Count);
+					DrawPath (path [i], path [i + 1], Color.blue);
+
+				}
 			}
-			transform.eulerAngles = new Vector3(0, 0, z);
-
-
-//			Debug.Log ("Calling Path");
-//			path = control.Path (player, this.gameObject, layerName);
-//			if (path == null) {
-//				Debug.Log ("No Path Found");
-//			} else {
-//				for (int i = 0; i < path.Count - 1; i++) {
-//					Debug.Log (path.Count);
-//					DrawPath (path [i], path [i + 1], Color.blue);
-//				}
-//			}
-
-
+			transform.eulerAngles = new Vector3 (0, 0, z);
 
 		}
 	}
+
+
 
 
 	void FixedUpdate () {
@@ -265,6 +173,11 @@ public class EnemyAI : MonoBehaviour, Die {
 	//	public int getHP(){
 	//		return hitpoints;
 	//	}
+
+
+
+
+
 
 
 
