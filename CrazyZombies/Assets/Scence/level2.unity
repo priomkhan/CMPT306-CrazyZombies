@@ -571,7 +571,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 718048491}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1036,9 +1036,9 @@ RectTransform:
   m_Father: {fileID: 1890937471}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -236, y: -221}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 188, y: 78}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888500283
@@ -1514,6 +1514,7 @@ MonoBehaviour:
   bulletFired: {fileID: 8300000, guid: 5004c60498243d34cb6423168b370b2c, type: 3}
   playerDead: {fileID: 8300000, guid: 3a81af862ffcde2479df3e2f5d08ee77, type: 3}
   bulletOffset: {x: 0.2, y: 0.5, z: 0}
+  levelName: 
 --- !u!58 &1788389561
 CircleCollider2D:
   m_ObjectHideFlags: 0
