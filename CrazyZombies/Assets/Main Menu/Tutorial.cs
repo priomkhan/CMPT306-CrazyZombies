@@ -23,10 +23,15 @@ public class Tutorial : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+		//if spacebar hit then destory movie and go to menu
 		if(Input.GetButtonDown("Jump") && movie.isPlaying){
 			Destroy(this.gameObject);
         }
+		//if video over destory image and go to menu
+		if (!movie.isPlaying) {
+			Destroy (this.gameObject);
+		}
+
 
 	}
 }

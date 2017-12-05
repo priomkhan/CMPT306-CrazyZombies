@@ -5,20 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class Menu_Script : MonoBehaviour {
 
-	public AudioSource audio;
+	public AudioSource a;
 	void Start () {
-		audio = GetComponent<AudioSource>();
-		audio.Play ();
-
+		//backgroundmusic 
+		a = GetComponent<AudioSource>();
+		a.Play ();
 	}
-	// Use this for initialization
+	// Start game from level 1
 	public void PlayGame () {
 		SceneManager.LoadScene(1);
 
 	}
-
-	// Update is called once per frame
+	//exit the game
 	public void Quit () {
-		Application.Quit();
+		Application.Quit();	
 	}
 }
