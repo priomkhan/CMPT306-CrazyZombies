@@ -223,20 +223,18 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 			} while (rooms[Mathf.FloorToInt(roomPos.x), Mathf.FloorToInt(roomPos.y)] > 0);
 			// Lock door
 			foreach (Vector2 v in roomInfo) {
-				Debug.Log("room :" +  rooms [Mathf.FloorToInt (v.x), Mathf.FloorToInt (v.y)]);
 				rooms [Mathf.FloorToInt (v.x), Mathf.FloorToInt (v.y)] *= 10;
 			}
-
-			Debug.Log ("-----");
+				
 			// Put key
 			rooms [Mathf.FloorToInt (roomPos.x), Mathf.FloorToInt (roomPos.y)] = keys;
 			roomInfo.Add(roomPos);
 
 			keys--;
 		}
-		for (int i = 0; i < roomInfo.Count; i++) {
-			Debug.Log("Test:"+rooms [Mathf.FloorToInt (roomInfo [i].x), Mathf.FloorToInt (roomInfo [i].y)].ToString());
-		}
+//		for (int i = 0; i < roomInfo.Count; i++) {
+//			Debug.Log("Test:"+rooms [Mathf.FloorToInt (roomInfo [i].x), Mathf.FloorToInt (roomInfo [i].y)].ToString());
+//		}
 	}
 
 	private GameObject generateDoor(int x, int y, Color color) {
