@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DoorScript : MonoBehaviour {
 	public Color color;
+	Animator anim;
+
 
 	// Use this for initialization
 	void Start () {
-		
+		anim = this.GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -17,7 +19,9 @@ public class DoorScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col) {
 		if (col.gameObject.tag == "player" && col.gameObject.GetComponent<PlayerController> ().haveItem (color.ToString () + " key")) {
-			Destroy (gameObject);
+			anim.SetBool ("doorOpen", true);
+
+			Destroy (gameObject,1.0f);
 		}
 	}
 }
