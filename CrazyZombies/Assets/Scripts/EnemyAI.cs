@@ -82,7 +82,7 @@ public class EnemyAI : MonoBehaviour, Die {
 
 		//enemyAction();
 		InvokeRepeating ("Wait_decision", 1, 1);
-		InvokeRepeating("findPath", 1.0f, 1.1f); //Need to comment out for without PathFinding
+		InvokeRepeating("findPath", 1.0f, 1.15f); //Need to comment out for without PathFinding
 
 	}
 

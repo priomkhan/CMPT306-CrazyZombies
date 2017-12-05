@@ -9,7 +9,9 @@ public class MapGenerator3 : MonoBehaviour, MapGenerator {
 	public Texture2D fenceImg;
 	public GameObject target;
 	public GameObject[,] map;
+	public Texture2D brokenInnerWallImg;
 	public int mapSize;
+	public GameObject wifeObject;
 
 	// Use this for initialization
 	void Start () {
@@ -93,8 +95,12 @@ public class MapGenerator3 : MonoBehaviour, MapGenerator {
 		}
 	}
 
+	//wifeObject.transform.position = target.transform.position;
+
 	private void generateBossArea() {
 		target.GetComponent<Rigidbody2D> ().transform.position = new Vector2 (mapSize / 2, mapSize / 2);
+		wifeObject.GetComponent<Rigidbody2D> ().transform.position = target.GetComponent<Rigidbody2D> ().transform.position;
+		wifeObject.SetActive (true);
 		for (int i = 0; i < 6; i++) {
 			createFence (mapSize / 2 - 3 + i, mapSize / 2 - 3);
 			createFence (mapSize / 2 + 3, mapSize / 2 - 3 + i);
@@ -177,8 +183,12 @@ public class MapGenerator3 : MonoBehaviour, MapGenerator {
 
 	private GameObject createFence(int x, int y) {
 		GameObject go = createGameObject (fenceImg, x, y, true, false);
+		MortalObject hp = go.AddComponent<MortalObject> ();
+		WallDie wd = go.AddComponent<WallDie> ();
+		wd.brokenWallImage = brokenInnerWallImg;
+		hp.hp = 10000;
 		go.tag = "fence";
-		go.layer = 14;
+		go.layer = 12;
 		return go;
 	}
 }

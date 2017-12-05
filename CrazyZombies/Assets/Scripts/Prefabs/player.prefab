@@ -26,9 +26,9 @@ GameObject:
   - component: {fileID: 114001958776868508}
   - component: {fileID: 82150925712571110}
   - component: {fileID: 58217106046511476}
-  - component: {fileID: 61733232013822362}
   - component: {fileID: 95906393638632944}
-  m_Layer: 12
+  - component: {fileID: 114730126902858352}
+  m_Layer: 8
   m_Name: player
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -42,8 +42,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111346141388848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.491, y: 0.491, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: -1.464, y: 0.438, z: 0}
+  m_LocalScale: {x: 0.5434375, y: 0.6978123, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111346141388848}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -83,31 +83,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!61 &61733232013822362
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1111346141388848}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.13, y: 2.07}
-    newSize: {x: 0.66, y: 0.86}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.98, y: 0.86}
-  m_EdgeRadius: 0
 --- !u!82 &82150925712571110
 AudioSource:
   m_ObjectHideFlags: 1
@@ -245,6 +220,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlThisObject: {fileID: 0}
+--- !u!114 &114730126902858352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111346141388848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44f11f553624484b8e16f640538e136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 8
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!212 &212112811155064464
 SpriteRenderer:
   m_ObjectHideFlags: 1

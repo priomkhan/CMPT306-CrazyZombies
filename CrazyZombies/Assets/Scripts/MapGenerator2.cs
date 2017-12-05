@@ -15,6 +15,7 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	private bool ready = false;
 	private GameObject[,] detailMap;
 
+
 	// Use this for initialization
 	void Start () {
 		int height = Random.Range (3, 5);
@@ -118,6 +119,7 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 		nodeTopRightt.layer = 12;
 		nodeTopRightt.tag = "Node";
 		nodeTopRightt.GetComponent<SpriteRenderer> ().sortingOrder = 0;
+	}
 
 
 	/**
