@@ -1089,8 +1089,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1831891382}
-  wallImg: {fileID: 2800000, guid: 8f0392387734b1849850e3c23dfca7b0, type: 3}
-  floorImg: {fileID: 2800000, guid: 057e838de0bf3234d856df6fad3ef39a, type: 3}
+  wallImg: {fileID: 2800000, guid: 9619067fc7a52479f9d8b356fe0d9994, type: 3}
+  floorImg: {fileID: 2800000, guid: f2b871458c0094008b0e0a1005e701c4, type: 3}
   doorImg: {fileID: 2800000, guid: 7d0ce38786bebc64f83368ed665fdf9d, type: 3}
   keyImg: {fileID: 2800000, guid: 7d0ce38786bebc64f83368ed665fdf9d, type: 3}
   entranceDoorImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
