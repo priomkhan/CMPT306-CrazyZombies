@@ -98,6 +98,15 @@ public class GameController : MonoBehaviour {
 		StartCoroutine(increaseSpawnRate());
 	}
 
+
+	void Update(){
+
+		if (Input.GetKey ("escape")) {
+			Debug.Log("Exit Game");
+			Application.Quit ();
+		}
+	}
+
 	IEnumerator increaseSpawnRate() // increases the rate of spawn every 5 seconds
 	{
 		yield return new WaitForSeconds(waitTime);

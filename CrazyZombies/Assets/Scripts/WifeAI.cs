@@ -96,7 +96,7 @@ public class WifeAI : MonoBehaviour, Die {
 			anim.Play ("zombie_Idle");
 		}
 
-		anim.SetFloat("Speed",velocity); // change idle/movement animation
+
 
 
 		distanceOfPlayer = Vector3.Distance (this.gameObject.transform.position, player.transform.position);
@@ -131,6 +131,8 @@ public class WifeAI : MonoBehaviour, Die {
 
 		if (targetPlayer) {
 
+
+
 			path = control.Path (this.gameObject, layerName);
 			//transform.eulerAngles = new Vector3(0, 0, z);
 			float z = 0;
@@ -138,7 +140,7 @@ public class WifeAI : MonoBehaviour, Die {
 				Debug.Log ("No Path Found");
 			} else {
 
-
+				anim.SetFloat("Speed",velocity); // change idle/movement animation
 				z = Mathf.Atan2 ((path [1].y - transform.position.y), 
 					(path [1].x - transform.position.x)) * Mathf.Rad2Deg;
 
@@ -296,7 +298,7 @@ public class WifeAI : MonoBehaviour, Die {
 	private void InRange(){
 		if (distanceOfPlayer < inRange) {
 			//Debug.Log("inRange True");
-			this.gameObject.GetComponent<SpriteRenderer> ().color = Color.yellow;
+			//this.gameObject.GetComponent<SpriteRenderer> ().color = Color.yellow;
 			enemyAction = friendsNear;
 		} else{
 			if (isHpLow ()) {
@@ -365,7 +367,7 @@ public class WifeAI : MonoBehaviour, Die {
 	}
 
 	private void retreat(){
-		this.gameObject.GetComponent<SpriteRenderer> ().color = Color.gray;
+		//this.gameObject.GetComponent<SpriteRenderer> ().color = Color.gray;
 		Debug.Log("Retreating");
 		targetPlayer = true;
 		runFromPlayer = true;
@@ -375,7 +377,7 @@ public class WifeAI : MonoBehaviour, Die {
 
 
 	private void attack(){
-		this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+		//this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 		// code to target player
 		Debug.Log("Attacking");
 		runFromPlayer = false;
