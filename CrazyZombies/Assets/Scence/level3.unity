@@ -195,7 +195,7 @@ RectTransform:
   m_Children:
   - {fileID: 103132828}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -324,7 +324,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &395498675
 GameObject:
@@ -460,10 +460,10 @@ MonoBehaviour:
   entranceImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
   floorImg: {fileID: 2800000, guid: d43ef525b7903ac43a88ae8353013c78, type: 3}
   fenceImg: {fileID: 2800000, guid: 4600bb99de418b94d8ec88da5fc6ca2c, type: 3}
-  target: {fileID: 1526932569}
+  target: {fileID: 845045415}
   brokenInnerWallImg: {fileID: 2800000, guid: 7940ff2a1ba69d9449d766828017e862, type: 3}
   mapSize: 40
-  wifeObject: {fileID: 845045415}
+  bossObject: {fileID: 957656430}
 --- !u!114 &752966587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1733,7 +1733,7 @@ Transform:
   m_LocalScale: {x: 2.1888824, y: 1.7912064, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1933573036
 GameObject:
@@ -2011,7 +2011,7 @@ Transform:
   m_LocalScale: {x: 0.5120426, y: 0.5772, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2037379659
 GameObject:
@@ -2289,7 +2289,7 @@ Transform:
   m_LocalScale: {x: 1.3915535, y: 1.4244448, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2101275798
 Prefab:
@@ -2328,7 +2328,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4183000531549676, guid: 70fccabed98001b4eb24d39db5a0dd9c, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114321232792410720, guid: 70fccabed98001b4eb24d39db5a0dd9c,
         type: 2}
@@ -2457,5 +2457,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
