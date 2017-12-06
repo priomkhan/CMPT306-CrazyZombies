@@ -19,7 +19,6 @@ public class KeyScript : MonoBehaviour {
 		if (col.gameObject.tag == "player") {
 			col.gameObject.GetComponent<PlayerController>().getItem(color.ToString() + " key");
 			Destroy (gameObject);
-			Debug.Log ("Get " + color.ToString () + " key");
 		}
 	}
 }

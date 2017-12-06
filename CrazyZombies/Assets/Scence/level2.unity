@@ -1650,7 +1650,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 8
-  layer: Object
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!1 &1831891382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,7 +1664,7 @@ GameObject:
   - component: {fileID: 1831891383}
   - component: {fileID: 1831891386}
   - component: {fileID: 1831891385}
-  - component: {fileID: 1831891387}
+  - component: {fileID: 1831891388}
   m_Layer: 0
   m_Name: target
   m_TagString: Untagged
@@ -1770,7 +1772,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1831891387
+--- !u!114 &1831891388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1778,10 +1780,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1831891382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ba24566595f194eb656e21a5e68e80, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b8e4783f4b49c041860c975885098cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 0, a: 1}
+  levelName: level3
 --- !u!1 &1890937467
 GameObject:
   m_ObjectHideFlags: 0

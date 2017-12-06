@@ -68,7 +68,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 	/**
 	 * Generate game object at position (x,y) with texture img 
 	 */
-	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider,bool isBackground, bool withNode) {
+	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider,bool isBackground) {
 		GameObject go = new GameObject ();
 		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0.5f, 0.5f));
 		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
@@ -77,9 +77,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		go.transform.localScale = new Vector3 (1.6f, 1.6f);
 		if (withCollider) {
 			go.AddComponent<BoxCollider2D> ();
-			if (withNode) {
 			addNodes (go);//Adding Nodes for path finding
-			}
 		}
 		go.tag = "object";
 		go.layer = 12;
@@ -160,7 +158,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		map [x, y] = 1;
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
-				detailMap[x * 10 + i, y * 10 + j] = createGameObject (inner ? inGroundImg : outGroundImg, x * 10 + i, y * 10 + j, false, true, false);
+				detailMap[x * 10 + i, y * 10 + j] = createGameObject (inner ? inGroundImg : outGroundImg, x * 10 + i, y * 10 + j, false, true);
 			}
 		}
 		if (!inner) {
@@ -290,7 +288,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		case(0):
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true, false);
+					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true);
 					if (j == 0) {
 						detailMap [x * 10 + i, y * 10 + j] = generateWall (x * 10 + i, y * 10 + j, inner);
 					}
@@ -310,7 +308,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		case(1):
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true, false);
+					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true);
 					if (i == 9 && j == 0) {
 						detailMap [x * 10 + i, y * 10 + j] = generateWall (x * 10 + i, y * 10 + j, inner);
 					}
@@ -321,7 +319,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		case(2):
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false,true, false);
+					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false,true);
 					if (i == 9) {
 						detailMap [x * 10 + i, y * 10 + j] = generateWall (x * 10 + i, y * 10 + j, inner);
 					}
@@ -341,7 +339,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		case (3):
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true, false);
+					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true);
 					if (i == 9 && j == 9) {
 						detailMap [x * 10 + i, y * 10 + j] = generateWall (x * 10 + i, y * 10 + j, inner);
 					}
@@ -351,7 +349,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		case (4):
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true, false);
+					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true);
 					if (j == 9) {
 						detailMap [x * 10 + i, y * 10 + j] = generateWall (x * 10 + i, y * 10 + j, inner);
 					}
@@ -370,7 +368,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		case(5):
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true, false);
+					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true);
 					if (i == 0 && j == 9) {
 						detailMap [x * 10 + i, y * 10 + j] = generateWall (x * 10 + i, y * 10 + j, inner);
 					}
@@ -380,7 +378,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		case(6):
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true, false);
+					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true);
 					if (i == 0) {
 						detailMap [x * 10 + i, y * 10 + j] = generateWall (x * 10 + i, y * 10 + j, inner);
 					}
@@ -399,7 +397,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		case(7):
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true, false);
+					detailMap [x * 10 + i, y * 10 + j] = createGameObject (inGroundImg, x * 10 + i, y * 10 + j, false, true);
 					if (i == 0 && j == 0) {
 						detailMap [x * 10 + i, y * 10 + j] = generateWall (x * 10 + i, y * 10 + j, inner);
 					}
@@ -413,18 +411,18 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 
 	private void generateBorder(int[,] map) {
 		for (int i = 0; i < map.GetLength(1) * 10; i++) {
-			createGameObject (outWallImg, -1, i, true, true, false);
-			createGameObject (outWallImg, map.GetLength (0) * 10, i, true, true, false);
+			createGameObject (outWallImg, -1, i, true, true);
+			createGameObject (outWallImg, map.GetLength (0) * 10, i, true, true);
 		}
 		for (int i = 0; i < map.GetLength (0) * 10; i++) {
-			createGameObject (outWallImg, i, -1, true, true, false);
-			createGameObject (outWallImg, i, map.GetLength (1) * 10, true, true, false);
+			createGameObject (outWallImg, i, -1, true, true);
+			createGameObject (outWallImg, i, map.GetLength (1) * 10, true, true);
 		}
 	}
 
 	private GameObject generateCar(float x, float y, float rotation) {
 		int imgIndex = Random.Range (0, carImgs.GetLength (0));
-		GameObject go = createGameObject (carImgs [imgIndex], x, y, true, false, true);
+		GameObject go = createGameObject (carImgs [imgIndex], x, y, true, false);
 		Rigidbody2D rigid = go.AddComponent<Rigidbody2D> ();
 		rigid.mass = 1000;
 		rigid.gravityScale = 0;
@@ -442,7 +440,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 	}
 		
 	private GameObject generateWall(float x, float y, bool inner) {
-		GameObject go = createGameObject (inner ? innerWallImg : outWallImg, x, y, true, false, true);
+		GameObject go = createGameObject (inner ? innerWallImg : outWallImg, x, y, true, false);
 		MortalObject hp = go.AddComponent<MortalObject> ();
 		hp.hp = Random.Range (0, 3) == 0 ? 10 : 10000;
 		WallDie wd = go.AddComponent<WallDie> ();
@@ -477,7 +475,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 			}
 		}
 
-		GameObject go = createGameObject (img, x * 10 + a, y * 10 + b, true, false, true);
+		GameObject go = createGameObject (img, x * 10 + a, y * 10 + b, true, false);
 		return go;
 	}
 }
