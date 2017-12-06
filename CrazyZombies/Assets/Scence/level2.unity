@@ -1650,7 +1650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 8
-  layer: 
+  layer: Object
 --- !u!1 &1831891382
 GameObject:
   m_ObjectHideFlags: 0

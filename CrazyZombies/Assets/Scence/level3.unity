@@ -1360,6 +1360,11 @@ Prefab:
       propertyPath: levelName
       value: Game Over Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 114730126902858352, guid: a372da2954ce90443b83d26fa98c98aa,
+        type: 2}
+      propertyPath: layer
+      value: Object
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a372da2954ce90443b83d26fa98c98aa, type: 2}
   m_IsPrefabParent: 0
