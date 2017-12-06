@@ -41,7 +41,7 @@ public class WifeAI : MonoBehaviour, Die {
 
 	int targetIndex;
 	NodeControl control;
-	Vector2 path;
+	List<Vector2> path;
 	public string layerName;
 	public string levelName;
 
@@ -130,23 +130,31 @@ public class WifeAI : MonoBehaviour, Die {
 	public void findPath() {
 
 		if (targetPlayer) {
-			path = control.generatePath (gameObject);
+
+
+
+			path = control.Path (this.gameObject, layerName);
 			//transform.eulerAngles = new Vector3(0, 0, z);
 			float z = 0;
-			if (path.Equals (Vector2.positiveInfinity)) {
+			if (path == null) {
 				Debug.Log ("No Path Found");
 			} else {
 
-				anim.SetFloat ("Speed", velocity); // change idle/movement animation
-				z = Mathf.Atan2 ((path.y - transform.position.y), 
-					(path.x - transform.position.x)) * Mathf.Rad2Deg;
+				anim.SetFloat("Speed",velocity); // change idle/movement animation
+				z = Mathf.Atan2 ((path [1].y - transform.position.y), 
+					(path [1].x - transform.position.x)) * Mathf.Rad2Deg;
 
 				if (runFromPlayer) {
 					z = -z;
 				}
 
-				//Debug.DrawLine (path, GetComponent<Rigidbody2D>().position, Color.blue, 1f);
 
+
+				for (int i = 0; i < path.Count - 1; i++) {
+					Debug.Log (path.Count);
+					DrawPath (path [i], path [i + 1], Color.blue);
+
+				}
 			}
 			transform.eulerAngles = new Vector3 (0, 0, z);
 
