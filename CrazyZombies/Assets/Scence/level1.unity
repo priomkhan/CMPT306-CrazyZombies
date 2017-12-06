@@ -2060,9 +2060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 8
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4096
+  layer: Object
 --- !u!1 &1831891382
 GameObject:
   m_ObjectHideFlags: 0

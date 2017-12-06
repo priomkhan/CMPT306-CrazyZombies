@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour, Die {
 
 	int targetIndex;
 	NodeControl control;
-	List<Vector2> path;
+	Vector2 path;
 	public string layerName;
 
 
@@ -109,7 +109,7 @@ public class EnemyAI : MonoBehaviour, Die {
 			anim.SetBool ("attack",false);
 		}
 
-		GetComponent<Rigidbody2D>().AddForce(gameObject.transform.right * velocity);
+		GetComponent<Rigidbody2D>().AddForce(transform.right * velocity);
 
 		//Without Path finding
 //		if (targetPlayer) {
@@ -130,28 +130,20 @@ public class EnemyAI : MonoBehaviour, Die {
 
 		if (targetPlayer) {
 
-			path = control.Path (this.gameObject, layerName);
+			path = control.generatePath (gameObject);
 			//transform.eulerAngles = new Vector3(0, 0, z);
 			float z = 0;
-			if (path == null) {
+			if (path.Equals(Vector2.positiveInfinity)) {
 				Debug.Log ("No Path Found");
 			} else {
-
-
-				z = Mathf.Atan2 ((path [1].y - transform.position.y), 
-					(path [1].x - transform.position.x)) * Mathf.Rad2Deg;
+				z = Mathf.Atan2 ((path.y - transform.position.y), 
+					(path.x - transform.position.x)) * Mathf.Rad2Deg;
 
 				if (runFromPlayer) {
 					z = -z;
 				}
-
-
-
-				for (int i = 0; i < path.Count - 1; i++) {
-					Debug.Log (path.Count);
-					DrawPath (path [i], path [i + 1], Color.blue);
-
-				}
+					
+				//Debug.DrawLine (path, GetComponent<Rigidbody2D>().position, Color.blue, 1f);
 			}
 			transform.eulerAngles = new Vector3 (0, 0, z);
 
