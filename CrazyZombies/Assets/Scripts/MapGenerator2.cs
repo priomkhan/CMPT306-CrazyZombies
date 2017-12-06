@@ -54,7 +54,7 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	 */
 	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider,bool isBackground, bool withNode) {
 		GameObject go = new GameObject ();
-		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0f, 0f));
+		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0.5f, 0.5f));
 		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
 		sr.sprite = sp;
 		go.transform.position = new Vector3 (x, y, isBackground ? 10f : 0f);
@@ -242,10 +242,10 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	private GameObject generateDoor(int x, int y, Color color) {
 		GameObject go = null;
 		if (x == 0) {
-			go = createDoorGameObject (doorImg, 9, y * 10 + 4.2f, true, false);
+			go = createDoorGameObject (doorImg, 8.5f, y * 10 + 3.8f, true, false);
 			//go = Instantiate(doorObj,new Vector3(x,y,0),doorObj.transform.rotation);
 		} else {
-			go = createDoorGameObject (doorImg, 15, y * 10 + 4.3f, true, false);
+			go = createDoorGameObject (doorImg, 14.5f, y * 10 + 3.8f, true, false);
 			//go = Instantiate(doorObj,new Vector3(x,y,0),doorObj.transform.rotation);
 		}
 		go.GetComponent<SpriteRenderer> ().color = color;
