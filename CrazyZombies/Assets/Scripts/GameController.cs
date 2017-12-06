@@ -98,6 +98,15 @@ public class GameController : MonoBehaviour {
 		StartCoroutine(increaseSpawnRate());
 	}
 
+
+	void Update(){
+
+		if (Input.GetKey ("escape")) {
+			Debug.Log("Exit Game");
+			Application.Quit ();
+		}
+	}
+
 	IEnumerator increaseSpawnRate() // increases the rate of spawn every 5 seconds
 	{
 		yield return new WaitForSeconds(waitTime);
@@ -121,8 +130,13 @@ public class GameController : MonoBehaviour {
 	void Spawn()
 	{
 		int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-		GameObject enemyClone = Instantiate(randomEnemyCharecter(), spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-		enemyClone.gameObject.SetActive(true);
+		Animator anim = spawnPoints [spawnPointIndex].transform.GetComponent<Animator> ();
+		if (anim != null) {
+			anim.SetBool ("spawnDoorOpen", true);
+			GameObject enemyClone = Instantiate (randomEnemyCharecter (), spawnPoints [spawnPointIndex].position, spawnPoints [spawnPointIndex].rotation);
+			enemyClone.gameObject.SetActive (true);
+			anim.SetBool ("spawnDoorOpen", false);
+		}
 	}
 
 

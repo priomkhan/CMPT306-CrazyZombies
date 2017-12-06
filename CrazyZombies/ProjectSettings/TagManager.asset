@@ -12,6 +12,8 @@ TagManager:
   - car
   - object
   - Node
+  - fence
+  - spawnDoor
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - Wall
   - Object
   - Ground
-  - 
+  - Fence
   - 
   - 
   - 
