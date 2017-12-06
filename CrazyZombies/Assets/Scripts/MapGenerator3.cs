@@ -100,8 +100,10 @@ public class MapGenerator3 : MonoBehaviour, MapGenerator {
 		target.SetActive (true);
 		bossObject.GetComponent<Rigidbody2D> ().transform.position = new Vector2 (mapSize / 2, mapSize / 2 - 5);
 		for (int i = 0; i < 6; i++) {
-			if (i < 2 || i > 4) {
-				createFence (mapSize / 2 - 3 + i, mapSize / 2 - 3);
+			GameObject go = createFence (mapSize / 2 - 3 + i, mapSize / 2 - 3);
+			if (i >= 2 && i <= 4) {
+				Level3FenceDoor fd = go.AddComponent<Level3FenceDoor> ();
+				fd.boss = bossObject;
 			}
 			createFence (mapSize / 2 + 3, mapSize / 2 - 3 + i);
 			createFence (mapSize / 2 + 3 - i, mapSize / 2 + 3);
