@@ -54,7 +54,7 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	 */
 	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider,bool isBackground, bool withNode) {
 		GameObject go = new GameObject ();
-		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0.5f, 0.5f));
+		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0f, 0f));
 		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
 		sr.sprite = sp;
 		go.transform.position = new Vector3 (x, y, isBackground ? 10f : 0f);
