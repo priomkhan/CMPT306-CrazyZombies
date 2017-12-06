@@ -52,7 +52,7 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	/**
 	 * Generate game object at position (x,y) with texture img 
 	 */
-	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider,bool isBackground) {
+	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider,bool isBackground, bool withNode) {
 		GameObject go = new GameObject ();
 		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0.5f, 0.5f));
 		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
@@ -61,7 +61,9 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 		go.transform.localScale = new Vector3 (1.6f, 1.6f);
 		if (withCollider) {
 			go.AddComponent<BoxCollider2D> ();
-			addNodes (go);
+			if (withNode) {
+				addNodes (go);
+			}
 		}
 		go.tag = "object";
 		go.layer = 12;
@@ -148,7 +150,7 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 		int height = rooms.GetLength (1) * 10;
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				createGameObject (floorImg, i, j, false, true);
+				createGameObject (floorImg, i, j, false, true, false);
 			}
 		}
 	}
@@ -173,20 +175,20 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 		for (int i = Mathf.FloorToInt(roomPos.y); i < roomPos.y + 10; i++) {
 			if (i == Mathf.FloorToInt(roomPos.y) || i == Mathf.FloorToInt(roomPos.y) + 9) {
 				for (int j = Mathf.FloorToInt(roomPos.x); j < roomPos.x + 10; j++) {
-					createGameObject (wallImg, j, i, true, false);
+					createGameObject (wallImg, j, i, true, false, false);
 				}
 			} else if (i == Mathf.FloorToInt(roomPos.y) + 4 || i == Mathf.FloorToInt(roomPos.y) + 5) {
 				if (x == 0) {
-					createGameObject (wallImg, roomPos.x, i, true, false);
+					createGameObject (wallImg, roomPos.x, i, true, false, false);
 				} else {
-					createGameObject (wallImg, roomPos.x + 9, i, true, false);
+					createGameObject (wallImg, roomPos.x + 9, i, true, false, false);
 				}
 				if (doorId > 0) {
 					generateDoor (x, y, colors[doorId - 1]);
 				}
 			} else {
-				createGameObject (wallImg, roomPos.x, i, true, false);
-				createGameObject (wallImg, roomPos.x + 9, i, true, false);
+				createGameObject (wallImg, roomPos.x, i, true, false, true);
+				createGameObject (wallImg, roomPos.x + 9, i, true, false, true);
 			}
 		}
 		if (keyId == 5 || keyId < 0) {
@@ -199,17 +201,16 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	}
 
 	private void generateHallway() {
-		createGameObject (wallImg, 10, 0, true, false);
-		createGameObject (wallImg, 14, 0, true, false);
-		createGameObject (entranceDoorImg, 11, 0, true, false);
-		createGameObject (entranceDoorImg, 12, 0, true, false);
-		createGameObject (entranceDoorImg, 13, 0, true, false);
-		createGameObject (wallImg, 10, rooms.GetLength (1) * 10 - 1, true, false);
-		createGameObject (wallImg, 14, rooms.GetLength (1) * 10 - 1, true, false);
+		createGameObject (wallImg, 10, 0, true, false, false);
+		createGameObject (wallImg, 14, 0, true, false, false);
+		createGameObject (entranceDoorImg, 11, 0, true, false, false);
+		createGameObject (entranceDoorImg, 12, 0, true, false, false);
+		createGameObject (entranceDoorImg, 13, 0, true, false, false);
+		createGameObject (wallImg, 10, rooms.GetLength (1) * 10 - 1, true, false, false);
+		createGameObject (wallImg, 14, rooms.GetLength (1) * 10 - 1, true, false, false);
 		for (int i = 0; i < 3; i++) {
-			GameObject go = createGameObject (exitDoorImg, 11 + i, rooms.GetLength (1) * 10 - 1, true, false);
-			DoorScript door = go.AddComponent<DoorScript> ();
-			door.color = Color.black;
+			GameObject go = createGameObject (exitDoorImg, 11 + i, rooms.GetLength (1) * 10 - 1, true, false, false);
+			go.AddComponent<Level2Pass> ();
 		}
 	}
 
@@ -259,9 +260,9 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	private GameObject generateKey(int x, int y, Color color) {
 		GameObject go = null;
 		if (x == 0) {
-			go = createGameObject (keyImg, Random.Range (1, 9), y * 10 + Random.Range (1, 9), true, false);
+			go = createGameObject (keyImg, Random.Range (1, 9), y * 10 + Random.Range (1, 9), true, false, true);
 		} else {
-			go = createGameObject (keyImg, 15 + Random.Range (1, 9), y * 10 + Random.Range (1, 9), true, false);
+			go = createGameObject (keyImg, 15 + Random.Range (1, 9), y * 10 + Random.Range (1, 9), true, false, true);
 		}
 		go.GetComponent<SpriteRenderer> ().color = color;
 		KeyScript key = go.AddComponent<KeyScript> ();
