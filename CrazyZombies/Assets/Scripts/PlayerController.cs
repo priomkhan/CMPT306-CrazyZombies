@@ -69,6 +69,9 @@ public class PlayerController : MonoBehaviour {
 
 		if (shooting && cur_bullet_cooldown <= 0) { //cur_bullet_cooldown <= Time.time
 			
+
+			audioPlay.PlayOneShot(bulletFired);
+			anim.SetTrigger ("Shoot");
 			//Create a bullet object
 			GameObject new_bullet = (GameObject) Instantiate(bullet_obj, this.transform.position + offset, this.transform.rotation * Quaternion.identity);
 			Rigidbody2D new_bullet_physics = new_bullet.GetComponent<Rigidbody2D> ();
