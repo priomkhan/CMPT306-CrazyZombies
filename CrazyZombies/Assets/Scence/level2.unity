@@ -1129,6 +1129,12 @@ MonoBehaviour:
   keyImg: {fileID: 2800000, guid: 208603398b3a58445b5a800283fa4c7d, type: 3}
   entranceDoorImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
   exitDoorImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
+  objImg:
+  - {fileID: 21300002, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
+  - {fileID: 21300024, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
+  - {fileID: 21300078, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
+  - {fileID: 21300070, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
+  - {fileID: 21300076, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
 --- !u!114 &1001913679
 MonoBehaviour:
   m_ObjectHideFlags: 0
