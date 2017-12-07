@@ -46,6 +46,8 @@ public class MortalObject : MonoBehaviour {
 		if (isLowHp ()) {
 			healthBar.startColor = Color.red;
 			healthBar.endColor = Color.red;
+			SendMessage ("lowHp");
+
 		}
 		if (currentHP <= 0 && GetComponent<Die>() != null) {
 			SendMessage ("die");

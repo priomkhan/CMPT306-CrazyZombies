@@ -65,6 +65,8 @@ public class Bullet : MonoBehaviour {
 				var contact = col.contacts[0]; // get the first contact point info // find the necessary rotation... 
 				var rot = Quaternion.FromToRotation(Vector3.up, contact.normal); 
 				Instantiate(bloodPrefab, contact.point, rot); // and make the enemy bleed 
+				audioPlay.PlayOneShot (deadZomieSound);
+
 			}
 
 
