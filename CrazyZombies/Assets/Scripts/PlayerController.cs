@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -210,6 +211,23 @@ public class PlayerController : MonoBehaviour {
 			audio.PlayOneShot(playerDead);
 			StartCoroutine(pause());
 			GetComponent<Collider2D>().enabled = false; // so it doesnt spam screams if hit multiple times
+
+		}
+
+		if (col.gameObject.tag == "wife" )		{
+			Renderer[] renderers = GetComponentsInChildren<Renderer>(); // remove player from view            
+			foreach (Renderer r in renderers)
+			{                
+				r.enabled = false;
+			}
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.PlayOneShot(playerDead);
+			//StartCoroutine(pause());
+			SceneManager.LoadScene (4);
+			GetComponent<Collider2D>().enabled = false; // so it doesnt spam screams if hit multiple times
+
+
+
 
 		}
 	}

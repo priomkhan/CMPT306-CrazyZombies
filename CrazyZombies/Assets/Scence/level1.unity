@@ -416,8 +416,8 @@ MonoBehaviour:
   spawnPoints: []
   childs: []
   spawnTime: 5
-  waitTime: 0.5
-  spawnRateIncrease: 0.5
+  waitTime: 0.2
+  spawnRateIncrease: 0.2
   enemyTypes:
   - {fileID: 25929554}
   - {fileID: 1211138222}
@@ -894,7 +894,7 @@ MonoBehaviour:
   player: {fileID: 1788389557}
   target: {fileID: 1831891382}
   enemySpawnPos: {fileID: 0}
-  levelDeficulty: 3
+  levelDeficulty: 4
   spawnDoorObj: {fileID: 1140721487}
   levelStartImg: {fileID: 2800000, guid: 2e7636d03ffddfe49a1ed990d30c629d, type: 3}
   imageStayTime: 5
@@ -2374,7 +2374,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.013937861, y: -0.020772874}
+  m_Offset: {x: -0.31059837, y: -0.3344469}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2385,7 +2385,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.87229854, y: 0.8754258}
+  m_Size: {x: 11.760239, y: 17.177797}
   m_EdgeRadius: 0
 --- !u!50 &1831891386
 Rigidbody2D:

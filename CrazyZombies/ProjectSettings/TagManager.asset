@@ -14,6 +14,8 @@ TagManager:
   - Node
   - fence
   - spawnDoor
+  - SpwanDoor
+  - wife
   layers:
   - Default
   - TransparentFX

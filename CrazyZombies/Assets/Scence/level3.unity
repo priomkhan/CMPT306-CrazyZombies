@@ -910,7 +910,7 @@ GameObject:
   - component: {fileID: 845045416}
   m_Layer: 9
   m_Name: wife
-  m_TagString: enemy
+  m_TagString: wife
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1169,7 +1169,7 @@ MonoBehaviour:
   monsterTooFarFromSpawn: 15
   enemyGathering: 2
   layerName: Object
-  levelName: Game Over Scene
+  levelName: Game Over Scene 2
 --- !u!1 &942128929 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1111346141388848, guid: a372da2954ce90443b83d26fa98c98aa,

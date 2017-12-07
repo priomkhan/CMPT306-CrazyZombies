@@ -205,7 +205,7 @@ public class WifeAI : MonoBehaviour, Die {
 		gameController.AddScore (scoreValue);
 		audioSource.PlayOneShot(audioSource.clip);
 
-		SceneManager.LoadScene (levelName);
+		SceneManager.LoadScene (5);
 
 		Destroy(gameObject,1.2f);
 	}

@@ -25,7 +25,7 @@ public class CarDie : MonoBehaviour, Die {
 		if (dead) {
 			return;
 		}
-		if (Random.Range (0, 3) == 0) {
+		if (Random.Range (0, 2) == 0) {
 			GameObject exp = GameObject.Instantiate (explosion);
 			exp.transform.position = gameObject.transform.position;
 			exp.SetActive (true);
