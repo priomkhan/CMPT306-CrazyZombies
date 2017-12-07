@@ -11,6 +11,7 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	public Texture2D keyImg;
 	public Texture2D entranceDoorImg;
 	public Texture2D exitDoorImg;
+	public Sprite[] objImg;
 	private int[,] rooms;
 	private bool ready = false;
 	private GameObject[,] detailMap;
@@ -196,6 +197,10 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 		} else if (keyId > 0) {
 			generateKey (x, y, colors[keyId - 1]);
 		}
+
+		for (int i = 0; i < Random.Range (2, 4); i++) {
+			generateObject (Random.Range ((int)roomPos.x, (int)roomPos.x + 10), Random.Range ((int)roomPos.y, (int)roomPos.y + 10), Random.Range (0, 180));
+		}
 		Debug.Log ("RoomId:" + x + "," + y + " key: " + keyId + " door: " + doorId); 
 
 	}
@@ -268,6 +273,27 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 		KeyScript key = go.AddComponent<KeyScript> ();
 		key.color = color;
 		go.gameObject.SetActive (true);
+		return go;
+	}
+
+	private GameObject generateObject(int x, int y, int rotation) {
+		int imgIndex = Random.Range (0, objImg.GetLength (0));
+		GameObject go = new GameObject ();
+		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+		sr.sprite = objImg [imgIndex];
+		go.transform.position = new Vector3 (x, y, 0f);
+		go.transform.localScale = new Vector3 (1.6f, 1.6f);
+		go.AddComponent<BoxCollider2D> ();
+		addNodes (go);
+		go.tag = "object";
+		go.layer = 12;
+
+		Rigidbody2D rigid = go.AddComponent<Rigidbody2D> ();
+		rigid.mass = 1000;
+		rigid.gravityScale = 0;
+		rigid.drag = 10;
+		rigid.angularDrag = 10;
+
 		return go;
 	}
 }
