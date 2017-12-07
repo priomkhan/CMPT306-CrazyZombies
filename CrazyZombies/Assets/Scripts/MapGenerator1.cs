@@ -197,6 +197,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 		switch (hospital) {
 		case(0):
 			target.transform.position = new Vector3 (5, 5, 0);
+			detailMap [5, 5] = target;
 			generateBlockMap (0, 0, map, true);
 			generateBlockMap (1, 0, map, true);
 			generateBlockMap (1, 1, map, true);
@@ -210,6 +211,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 			break;
 		case(1):
 			target.transform.position = new Vector3 ((map.GetLength (0) - 1) * 10 + 5, 5, 0);
+			detailMap [(map.GetLength (0) - 1) * 10 + 5, 5] = target;
 			generateBlockMap (map.GetLength (0) - 1, 0, map, true);
 			generateBlockMap (map.GetLength(0) - 2, 0, map, true);
 			generateBlockMap (map.GetLength(0) - 2, 1, map, true);
@@ -223,6 +225,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 			break;
 		case(2):
 			target.transform.position = new Vector3 ((map.GetLength (0) - 1) * 10 + 5, (map.GetLength (1) - 1) * 10 + 5, 0);
+			detailMap [(map.GetLength (0) - 1) * 10 + 5, (map.GetLength (1) - 1) * 10 + 5] = target;
 			generateBlockMap (map.GetLength (0) - 1, map.GetLength (1) - 1, map, true);
 			generateBlockMap (map.GetLength(0) - 2, map.GetLength(1) - 1, map, true);
 			generateBlockMap (map.GetLength(0) - 2, map.GetLength(1) - 2, map, true);
@@ -236,6 +239,7 @@ public class MapGenerator1 : MonoBehaviour, MapGenerator {
 			break;
 		case(3):
 			target.transform.position = new Vector3 (5, (map.GetLength (1) - 1) * 10 + 5, 0);
+			detailMap [5, (map.GetLength (1) - 1) * 10 + 5] = target;
 			generateBlockMap (0, map.GetLength (1) - 1, map, true);
 			generateBlockMap (1, map.GetLength(1) - 1, map, true);
 			generateBlockMap (1, map.GetLength(1) - 2, map, true);
