@@ -112,7 +112,7 @@ public class NodeControl : MonoBehaviour {
 					n.score = distance;
 					openList.Add (n);
 				}
-				//Debug.DrawLine (n.pos, curNode.pos, Color.white, 1f); 
+				Debug.DrawLine (n.pos, curNode.pos, Color.white, 1f); 
 			}
 		}
 		path = closeList;

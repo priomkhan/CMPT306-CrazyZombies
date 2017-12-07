@@ -44,29 +44,29 @@ public class MapGenerator3 : MonoBehaviour, MapGenerator {
 			int temp = 0;
 			if (i == 0) {
 				temp = 0;
-				createGameObject (wallImg, -1, -1, true, false);
-				createGameObject (wallImg, -1, map.GetLength(1), true, false);
+				createGameObject (wallImg, -1, -1, true, false, false);
+				createGameObject (wallImg, -1, map.GetLength(1), true, false, false);
 			} else if (i == map.GetLength (0) - 1) {
 				temp = 2;
-				createGameObject (wallImg, map.GetLength (0), -1, true, false);
-				createGameObject (wallImg, map.GetLength (0), map.GetLength (1), true, false);
+				createGameObject (wallImg, map.GetLength (0), -1, true, false, false);
+				createGameObject (wallImg, map.GetLength (0), map.GetLength (1), true, false, false);
 			} else {
 				temp = 1;
 			}
-			createGameObject (wallImg, i, -1, true, false);
-			createGameObject (wallImg, i, map.GetLength (1), true, false);
+			createGameObject (wallImg, i, -1, true, false, false);
+			createGameObject (wallImg, i, map.GetLength (1), true, false, false);
 			for (int j = 0; j < map.GetLength (1); j++) {
 				if (temp == 0) {
-					createGameObject (wallImg, -1, j, true, false);
+					createGameObject (wallImg, -1, j, true, false, false);
 				} else if (temp == 2) {
-					createGameObject (wallImg, map.GetLength(0), j, true, false);
+					createGameObject (wallImg, map.GetLength(0), j, true, false, false);
 				}
-				createGameObject (floorImg, i, j, false, true);
+				createGameObject (floorImg, i, j, false, true, false);
 			}
 		}
-		createGameObject (entranceImg, mapSize / 2 - 1, -1, true, false);
-		createGameObject (entranceImg, mapSize / 2, -1, true, false);
-		createGameObject (entranceImg, mapSize / 2 + 1, -1, true, false);
+		createGameObject (entranceImg, mapSize / 2 - 1, -1, true, false, false);
+		createGameObject (entranceImg, mapSize / 2, -1, true, false, false);
+		createGameObject (entranceImg, mapSize / 2 + 1, -1, true, false, false);
 	}
 
 	/** 
@@ -76,21 +76,22 @@ public class MapGenerator3 : MonoBehaviour, MapGenerator {
 	*/
 	private void generateFence(int distance, int open) {
 		for (int i = 0; i < mapSize - distance * 2; i++) {
+			bool withNode = i == 0 || i == (mapSize - distance * 2) / 2 - 2 || i == (mapSize - distance * 2) / 2 + 2;
 			int skip = -1;
 			if ((i >= (mapSize - distance * 2) / 2 - 1 && i <= (mapSize - distance * 2) / 2 + 1)) {
 				skip = open;
 			}
 			if (skip != 2) {
-				createFence (distance + i, distance);
+				createFence (distance + i, distance, withNode);
 			}
 			if (skip != 1) {
-				createFence (mapSize - distance, distance + i);
+				createFence (mapSize - distance, distance + i, withNode);
 			}
 			if (skip != 0) {
-				createFence (mapSize - distance - i, mapSize - distance);
+				createFence (mapSize - distance - i, mapSize - distance, withNode);
 			}
 			if (skip != 3) {
-				createFence (distance, mapSize - distance - i);
+				createFence (distance, mapSize - distance - i, withNode);
 			}
 		}
 	}
@@ -100,21 +101,22 @@ public class MapGenerator3 : MonoBehaviour, MapGenerator {
 		target.SetActive (true);
 		bossObject.GetComponent<Rigidbody2D> ().transform.position = new Vector2 (mapSize / 2, mapSize / 2 - 5);
 		for (int i = 0; i < 6; i++) {
-			GameObject go = createFence (mapSize / 2 - 3 + i, mapSize / 2 - 3);
+			bool withNode = i == 0;
+			GameObject go = createFence (mapSize / 2 - 3 + i, mapSize / 2 - 3, true);
 			if (i >= 2 && i <= 4) {
 				Level3FenceDoor fd = go.AddComponent<Level3FenceDoor> ();
 				fd.boss = bossObject;
 			}
-			createFence (mapSize / 2 + 3, mapSize / 2 - 3 + i);
-			createFence (mapSize / 2 + 3 - i, mapSize / 2 + 3);
-			createFence (mapSize / 2 - 3, mapSize / 2 + 3 - i);
+			createFence (mapSize / 2 + 3, mapSize / 2 - 3 + i, withNode);
+			createFence (mapSize / 2 + 3 - i, mapSize / 2 + 3, withNode);
+			createFence (mapSize / 2 - 3, mapSize / 2 + 3 - i, withNode);
 		}
 	}
 
 	/**
 	 * Generate game object at position (x,y) with texture img 
 	 */
-	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider,bool isBackground) {
+	private GameObject createGameObject(Texture2D img, float x, float y, bool withCollider,bool isBackground, bool withNode) {
 		GameObject go = new GameObject ();
 		Sprite sp = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0.5f, 0.5f));
 		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
@@ -123,7 +125,9 @@ public class MapGenerator3 : MonoBehaviour, MapGenerator {
 		go.transform.localScale = new Vector3 (1.6f, 1.6f);
 		if (withCollider) {
 			go.AddComponent<BoxCollider2D> ();
-			addNodes (go);
+			if (withNode) {
+				addNodes (go);
+			}
 		}
 		go.tag = "object";
 		go.layer = 12;
@@ -183,8 +187,8 @@ public class MapGenerator3 : MonoBehaviour, MapGenerator {
 		nodeTopRightt.GetComponent<SpriteRenderer> ().sortingOrder = 0;
 	}
 
-	private GameObject createFence(int x, int y) {
-		GameObject go = createGameObject (fenceImg, x, y, true, false);
+	private GameObject createFence(int x, int y, bool withNode) {
+		GameObject go = createGameObject (fenceImg, x, y, true, false, withNode);
 		MortalObject hp = go.AddComponent<MortalObject> ();
 		WallDie wd = go.AddComponent<WallDie> ();
 		wd.brokenWallImage = brokenInnerWallImg;
