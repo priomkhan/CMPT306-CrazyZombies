@@ -23,6 +23,12 @@ public class PlayerController : MonoBehaviour {
 	bool weapon;
 
 
+	int prevWeapon;
+	Vector3 offset;
+	bool shoot;
+	bool shoot2;
+
+
 
 	public GameObject new_bullet;
 
@@ -36,57 +42,17 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 
-	
-		//Shooting part
-
-		cur_bullet_cooldown -= Time.deltaTime;
-		int prevWeapon = currentWeapon;
-		Vector3 offset = transform.rotation * bulletOffset;
-		bool shoot = Input.GetButton("Fire1");
-		bool shoot2 = Input.GetButton ("Fire2");
-		AudioSource audioPlay = GetComponent<AudioSource>();
-
-		//pistol gun shooting function
-
-		if (shoot && cur_bullet_cooldown <= 0) {
-			audioPlay.PlayOneShot (pistolSound);
-
-			anim.SetTrigger ("pistolShoot");
-			//Create a bullet object
-			new_bullet = (GameObject)Instantiate (bullet_obj, this.transform.position + offset, this.transform.rotation * Quaternion.identity);
-			Rigidbody2D new_bullet_physics = new_bullet.GetComponent<Rigidbody2D> ();
-			new_bullet_physics.velocity = this.transform.up * bullet_speed;
-
-			cur_bullet_cooldown = pistolCoolDown;
-
-		}
-
-		//rifle gun shooting function
-		if (shoot2 && cur_bullet_cooldown <= 0) { //cur_bullet_cooldown <= Time.time
-
-			audioPlay.PlayOneShot (rifleSound);
-
-			anim.SetTrigger ("Shoot");
-			//Create a bullet object
-			new_bullet = (GameObject)Instantiate (bullet_obj, this.transform.position + offset, this.transform.rotation * Quaternion.identity);
-			Rigidbody2D new_bullet_physics = new_bullet.GetComponent<Rigidbody2D> ();
-			new_bullet_physics.velocity = this.transform.up * bullet_speed;
-
-			cur_bullet_cooldown = rifleCoolDown;
-		}
-
-
 
 		//switch weapon to the hand gun
 		if (Input.GetMouseButtonDown(0)) {
-			
+
 			currentWeapon = 0;
 			anim.SetBool ("handGun", true);
 			anim.SetBool ("rifleGun", false);
 
 
 		}
-			
+
 		//swith weapon to the rifle gun
 		if (Input.GetMouseButtonDown(1)&&transform.childCount >= 2) {
 
@@ -101,6 +67,26 @@ public class PlayerController : MonoBehaviour {
 			selectWeapon ();
 
 		}
+
+	}
+
+	//switch guns
+	void selectWeapon(){
+
+		int i = 0;
+		foreach (Transform weapon in transform){
+
+			if (i == currentWeapon) {
+
+				weapon.gameObject.SetActive (true);
+			} else {
+
+				weapon.gameObject.SetActive (false);
+			}
+			i++;
+		}
+
+
 			
 	}
 
@@ -168,23 +154,46 @@ public class PlayerController : MonoBehaviour {
 			anim.SetBool ("Player_Walk", false);
 		}
 
-	}
 
-	//switch guns
-	void selectWeapon(){
+		//Shooting part
 
-		int i = 0;
-		foreach (Transform weapon in transform){
+		cur_bullet_cooldown -= Time.deltaTime;
+		prevWeapon = currentWeapon;
+		offset = transform.rotation * bulletOffset;
+		shoot = Input.GetButton("Fire1");
+		shoot2 = Input.GetButton ("Fire2");
+		AudioSource audioPlay = GetComponent<AudioSource>();
 
-			if (i == currentWeapon) {
+		//pistol gun shooting function
 
-				weapon.gameObject.SetActive (true);
-			} else {
+		if (shoot && cur_bullet_cooldown <= 0) {
+			audioPlay.PlayOneShot (pistolSound);
 
-				weapon.gameObject.SetActive (false);
-			}
-			i++;
+			anim.SetTrigger ("pistolShoot");
+			//Create a bullet object
+			new_bullet = (GameObject)Instantiate (bullet_obj, this.transform.position + offset, this.transform.rotation * Quaternion.identity);
+			Rigidbody2D new_bullet_physics = new_bullet.GetComponent<Rigidbody2D> ();
+			new_bullet_physics.velocity = this.transform.up * bullet_speed;
+
+			cur_bullet_cooldown = pistolCoolDown;
+
 		}
+
+		//rifle gun shooting function
+		if (shoot2 && cur_bullet_cooldown <= 0) { //cur_bullet_cooldown <= Time.time
+
+			audioPlay.PlayOneShot (rifleSound);
+
+			anim.SetTrigger ("Shoot");
+			//Create a bullet object
+			new_bullet = (GameObject)Instantiate (bullet_obj, this.transform.position + offset, this.transform.rotation * Quaternion.identity);
+			Rigidbody2D new_bullet_physics = new_bullet.GetComponent<Rigidbody2D> ();
+			new_bullet_physics.velocity = this.transform.up * bullet_speed;
+
+			cur_bullet_cooldown = rifleCoolDown;
+		}
+
+
 
 	}
 		
