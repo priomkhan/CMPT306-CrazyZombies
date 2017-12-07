@@ -79,7 +79,7 @@ public class Bullet : MonoBehaviour {
 				Destroy(transform.GetChild(i).gameObject, 0.1f);
 			}
 			audioPlay.PlayOneShot(shotFired);
-			Destroy(gameObject, 0f); // destroys bullet
+			Destroy(gameObject, 0.2f); // destroys bullet
 			//GameObject bulletExplosion = (GameObject)Instantiate(fireAnimation, transform.position, transform.rotation * Quaternion.Euler(0, 0, 90));
 //			Destroy(bulletExplosion, 0.9f); // distroy expoition animation
 

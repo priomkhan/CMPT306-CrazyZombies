@@ -1532,6 +1532,17 @@ Prefab:
       propertyPath: rifleSound
       value: 
       objectReference: {fileID: 8300000, guid: cee4ac34117a948f6a463fa07790d497, type: 3}
+    - target: {fileID: 114158044115656060, guid: a372da2954ce90443b83d26fa98c98aa,
+        type: 2}
+      propertyPath: new_bullet
+      value: 
+      objectReference: {fileID: 1596159550350320, guid: 70fccabed98001b4eb24d39db5a0dd9c,
+        type: 2}
+    - target: {fileID: 114158044115656060, guid: a372da2954ce90443b83d26fa98c98aa,
+        type: 2}
+      propertyPath: bulletOffset.x
+      value: 0.35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a372da2954ce90443b83d26fa98c98aa, type: 2}
   m_IsPrefabParent: 0

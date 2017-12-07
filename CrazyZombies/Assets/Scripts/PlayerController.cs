@@ -7,15 +7,15 @@ public class PlayerController : MonoBehaviour {
 	//private Animator animator;
 
 	public GameObject bullet_obj;
-	public float bullet_speed = 5f;
+	public float bullet_speed = 25f;
 	float pistolCoolDown = 0.9f;
-	float rifleCoolDown = 2.0f;
+	float rifleCoolDown = 0.6f;
 	float cur_bullet_cooldown;
 	AudioSource audioPlay;
 	public AudioClip pistolSound;
 	public AudioClip rifleSound;
 	public AudioClip playerDead;
-	public Vector3 bulletOffset = new Vector3(2.45f, 3.5f, 0);
+	public Vector3 bulletOffset = new Vector3(.35f, 0.5f, 0);
 	private List<string> inventory;
     Animator anim;
 	public int ammo=10;

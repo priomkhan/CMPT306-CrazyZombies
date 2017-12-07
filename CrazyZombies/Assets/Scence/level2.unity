@@ -1668,13 +1668,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet_obj: {fileID: 1596159550350320, guid: 70fccabed98001b4eb24d39db5a0dd9c, type: 2}
-  bullet_speed: 20
+  bullet_speed: 25
   pistolSound: {fileID: 8300000, guid: 8bda490300e0a4af0b5f6dce5d45967b, type: 3}
   rifleSound: {fileID: 8300000, guid: cee4ac34117a948f6a463fa07790d497, type: 3}
   playerDead: {fileID: 8300000, guid: 3a81af862ffcde2479df3e2f5d08ee77, type: 3}
-  bulletOffset: {x: 0.2, y: 0.5, z: 0}
+  bulletOffset: {x: 0.35, y: 0.5, z: 0}
   ammo: 10
-  new_bullet: {fileID: 0}
+  new_bullet: {fileID: 1596159550350320, guid: 70fccabed98001b4eb24d39db5a0dd9c, type: 2}
 --- !u!58 &1788389561
 CircleCollider2D:
   m_ObjectHideFlags: 0
