@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour {
 			//Create a bullet object
 			new_bullet = (GameObject)Instantiate (bullet_obj, this.transform.position + offset, this.transform.rotation * Quaternion.identity);
 			Rigidbody2D new_bullet_physics = new_bullet.GetComponent<Rigidbody2D> ();
-			new_bullet_physics.velocity = this.transform.up * bullet_speed;
+			new_bullet_physics.velocity = this.transform.up * bullet_speed*Time.deltaTime*100;
 
 			cur_bullet_cooldown = pistolCoolDown;
 

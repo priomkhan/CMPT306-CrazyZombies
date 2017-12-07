@@ -306,8 +306,8 @@ MonoBehaviour:
   spawnPoints: []
   childs: []
   spawnTime: 5
-  waitTime: 5
-  spawnRateIncrease: 0.1
+  waitTime: 0.5
+  spawnRateIncrease: 0.3
   enemyTypes:
   - {fileID: 1933573036}
   - {fileID: 2037379659}
@@ -2519,7 +2519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb7a1bda679f164a8177ddff4bcec2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 9
   enemyLineOfSight: 16
   dangerZone: 10
   inRange: 14

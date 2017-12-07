@@ -243,7 +243,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &25929560
 MonoBehaviour:
@@ -416,8 +416,8 @@ MonoBehaviour:
   spawnPoints: []
   childs: []
   spawnTime: 5
-  waitTime: 5
-  spawnRateIncrease: 0.1
+  waitTime: 0.5
+  spawnRateIncrease: 0.5
   enemyTypes:
   - {fileID: 25929554}
   - {fileID: 1211138222}
@@ -1354,7 +1354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb7a1bda679f164a8177ddff4bcec2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 8
   enemyLineOfSight: 16
   dangerZone: 10
   inRange: 14
@@ -1393,7 +1393,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &1211138229
 BoxCollider2D:
@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb7a1bda679f164a8177ddff4bcec2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 8
   enemyLineOfSight: 16
   dangerZone: 10
   inRange: 14
@@ -1671,7 +1671,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &1608601609
 BoxCollider2D:
@@ -2339,12 +2339,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 410ce63cb997b2448952e0bf167b905d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ad73dd0336e975c4288320b1059299ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 19.499998, y: 23.67}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2357,7 +2357,7 @@ Transform:
   m_GameObject: {fileID: 1831891382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5120001, y: 0.512, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.72, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -2374,18 +2374,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.013937861, y: -0.020772874}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 19.499998, y: 23.67}
+    newSize: {x: 19.499998, y: 23.67}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.87229854, y: 0.8754258}
   m_EdgeRadius: 0
 --- !u!50 &1831891386
 Rigidbody2D:

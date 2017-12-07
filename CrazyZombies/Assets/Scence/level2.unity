@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb7a1bda679f164a8177ddff4bcec2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 8
   enemyLineOfSight: 16
   dangerZone: 10
   inRange: 14
@@ -943,7 +943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb7a1bda679f164a8177ddff4bcec2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6
   enemyLineOfSight: 16
   dangerZone: 10
   inRange: 14
@@ -1203,10 +1203,7 @@ MonoBehaviour:
   exitDoorImg: {fileID: 2800000, guid: b3521d6c203860f4f8c8fdb37cbee68e, type: 3}
   objImg:
   - {fileID: 21300002, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
-  - {fileID: 21300024, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
-  - {fileID: 21300078, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
-  - {fileID: 21300070, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
-  - {fileID: 21300076, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
+  - {fileID: 21300100, guid: 1259de8d3ef3cce4292209852edf33a9, type: 3}
 --- !u!114 &1001913679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,8 +1861,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 410ce63cb997b2448952e0bf167b905d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 208603398b3a58445b5a800283fa4c7d, type: 3}
+  m_Color: {r: 0.63235295, g: 0.350167, b: 0.16738756, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1882,7 +1879,7 @@ Transform:
   m_GameObject: {fileID: 1831891382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.09, y: 0.39, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.46, y: 1.99, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -2315,7 +2312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb7a1bda679f164a8177ddff4bcec2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 9
   enemyLineOfSight: 16
   dangerZone: 10
   inRange: 14

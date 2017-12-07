@@ -110,7 +110,7 @@ public class WifeAI : MonoBehaviour, Die {
 			anim.SetBool ("attack",false);
 		}
 
-		GetComponent<Rigidbody2D>().AddForce(gameObject.transform.right * velocity);
+		GetComponent<Rigidbody2D>().AddForce(gameObject.transform.right *40* velocity*Time.deltaTime);
 
 		//Without Path finding
 		//		if (targetPlayer) {

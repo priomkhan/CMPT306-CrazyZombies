@@ -46,7 +46,7 @@ public class NodeControl : MonoBehaviour {
 		bool hit = Physics2D.Linecast (startPos, targetPos,layerMask);
 
 		if (!hit) {
-			Debug.Log ("Adding Path..........Collide with: ");
+			//Debug.Log ("Adding Path..........Collide with: ");
 			return targetPos;
 		}
 
@@ -65,7 +65,7 @@ public class NodeControl : MonoBehaviour {
 	}
 
 	private void findPath() {
-		Debug.Log ("Path Finding Started.......");
+		//Debug.Log ("Path Finding Started.......");
 
 		// when nothing blocking
 		layerMask = 1 << LayerMask.NameToLayer (layer);

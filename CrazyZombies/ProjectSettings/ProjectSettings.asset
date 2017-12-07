@@ -587,12 +587,15 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Build: 1
+    Build: 0
+    Collab: 0
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: fe67973d-746c-4c81-b721-fe88c92ec22a
-  projectName: CrazyZombies
+  cloudProjectId: 27685fb8-3a9b-4281-9861-d15dd336f846
+  projectName: CrazyZombies (1)
   organizationId: priomkhan1988
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

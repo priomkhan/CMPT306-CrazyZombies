@@ -109,7 +109,7 @@ public class EnemyAI : MonoBehaviour, Die {
 			anim.SetBool ("attack",false);
 		}
 
-		GetComponent<Rigidbody2D>().AddForce(transform.right * velocity);
+		GetComponent<Rigidbody2D>().AddForce(transform.right * velocity*50*Time.deltaTime);
 
 		//Without Path finding
 //		if (targetPlayer) {
