@@ -1220,8 +1220,8 @@ MonoBehaviour:
   enemySpawnPos: {fileID: 0}
   levelDeficulty: 2
   spawnDoorObj: {fileID: 718048491}
-  levelStartImg: {fileID: 2800000, guid: 342bd3be25706a049a9a329a83c34de0, type: 3}
-  imageStayTime: 0.5
+  levelStartImg: {fileID: 2800000, guid: c6649b93919c0204ca8ad35b994504de, type: 3}
+  imageStayTime: 5
   timeLimit: 10
 --- !u!82 &1001913680
 AudioSource:

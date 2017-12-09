@@ -39,7 +39,8 @@ public class Bullet : MonoBehaviour {
 			col.gameObject.tag == "car" ||
 			col.gameObject.tag == "object" ||
 			col.gameObject.tag == "spawnDoor" ||
-			col.gameObject.tag == "fence")
+			col.gameObject.tag == "fence"||
+			col.gameObject.tag == "wife")
 		//if ( col.gameObject.layer == 12)
 		{
 //			if (col.gameObject.tag == "enemy") {
@@ -57,11 +58,11 @@ public class Bullet : MonoBehaviour {
 //					
 //				}
 
-			if (col.gameObject.tag != "object") {
+			if (col.gameObject.tag != "object" || col.gameObject.tag == "wife") {
 				col.gameObject.SendMessage ("takeDamage", 1);
 			}
 
-			if (col.gameObject.tag == "enemy") {
+			if (col.gameObject.tag == "enemy"|| col.gameObject.tag == "wife") {
 				var contact = col.contacts[0]; // get the first contact point info // find the necessary rotation... 
 				var rot = Quaternion.FromToRotation(Vector3.up, contact.normal); 
 				Instantiate(bloodPrefab, contact.point, rot); // and make the enemy bleed 

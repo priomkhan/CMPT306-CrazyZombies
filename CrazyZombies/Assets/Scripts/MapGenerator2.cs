@@ -247,10 +247,10 @@ public class MapGenerator2 : MonoBehaviour, MapGenerator {
 	private GameObject generateDoor(int x, int y, Color color) {
 		GameObject go = null;
 		if (x == 0) {
-			go = createDoorGameObject (doorImg, 9f, y * 10f, true, false);
+			go = createDoorGameObject (doorImg, 9f - 0.5f, y * 10 + 3.8f, true, false);
 			//go = Instantiate(doorObj,new Vector3(x,y,0),doorObj.transform.rotation);
 		} else {
-			go = createDoorGameObject (doorImg, 15f, y * 10f, true, false);
+			go = createDoorGameObject (doorImg, 14f + 0.5f, y * 10 + 3.8f, true, false);
 			//go = Instantiate(doorObj,new Vector3(x,y,0),doorObj.transform.rotation);
 		}
 		go.GetComponent<SpriteRenderer> ().color = color;
