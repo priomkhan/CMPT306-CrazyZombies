@@ -9,9 +9,9 @@ Features:
 
 Download Game: https://drive.google.com/open?id=19gHFhuWYHmjuHFkHwW1wVLpQNjFajmVG
 
-<a href="url"><img src="https://drive.google.com/uc?export=view&id=1BWCdAnwNMkrI1upfB3N9YkAP71YTjjcq" align="left" height="512" width="300" ></a>
+<a href="url"><img src="https://drive.google.com/uc?export=view&id=1BWCdAnwNMkrI1upfB3N9YkAP71YTjjcq" align="left" height="1280" width="1580" ></a>
 
-<a href="url"><img src="https://drive.google.com/uc?export=view&id=12kd_W9bpqLLneC-GfhdAw4yD0Gh8NU1Y" align="left" height="512" width="300" ></a>
+<a href="url"><img src="https://drive.google.com/uc?export=view&id=12kd_W9bpqLLneC-GfhdAw4yD0Gh8NU1Y" align="left" height="1280" width="1580" ></a>
 
-<a href="url"><img src="https://drive.google.com/uc?export=view&id=1WgNZAcn2akCtw8hIb-e-f7IUXUnmGXdB" align="left" height="512" width="300" ></a>
+<a href="url"><img src="https://drive.google.com/uc?export=view&id=1WgNZAcn2akCtw8hIb-e-f7IUXUnmGXdB" align="left" height="1280" width="1580" ></a>
 
